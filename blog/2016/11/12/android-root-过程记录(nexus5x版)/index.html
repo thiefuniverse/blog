@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Android Root 过程记录(nexus5x版) - Valley of Thief</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="ThankFly" />
+        <meta name="description" content="process of android root(nexus5x)" />
+        <meta name="keywords" content="root,解密" />
+
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">    
+    <style type="text/css"></style>
+</head>
+
+  <body class="container">
+    <nav class="main-nav">
+	<a href="/">Valley</a>
+        <a href="/blog">Archive</a>
+        <a href="/tags">Tag</a>
+        <a href="/about/">About</a>
+        <a class="cta" href="https://github.com/thiefuniverse/">GitHub</a>
+    </nav>
+              </div>
+              <img class="avatar" src="/media/images/younai.jpeg"/>
+
+<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Android Root 过程记录(nexus5x版)</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-orgde61589" class="outline-2">
+<h2 id="orgde61589">root的好处</h2>
+<div class="outline-text-2" id="text-orgde61589">
+<p>
+<b>root</b> 之后你才是手机真正的主人～，本来不能删的预装软件现在可以删了（不过我一般不删，怕真的把系统给弄崩了). 可以更高效地使用像greenify，icebox(必须root)这类需要root权限的软件.当然,root了之后还有其他各种与以往不同的玩法．
+</p>
+</div>
+</div>
+
+<div id="outline-container-org758b56e" class="outline-2">
+<h2 id="org758b56e">nexus5x 的root过程</h2>
+<div class="outline-text-2" id="text-org758b56e">
+</div><div id="outline-container-orgfdd6dbb" class="outline-3">
+<h3 id="orgfdd6dbb">解锁~</h3>
+<div class="outline-text-3" id="text-orgfdd6dbb">
+<p>
+首先,要解锁,（解密解锁都是android的保护机制,不解锁就刷不了recovery,而一般的root过程就是通过recovery往系统里装一个superSU的程序，所以必须一步一步来，先解锁，然后刷recovery,再通过recovery刷superSU的包),关机状态下按住开机和音量下键可以进入fastboot模式．可以看到显示的画面里底部显示状态为locked(也就是被锁的状态).原则上这个时候需要在命令行下执行 fastboot oem unlock 就可以解锁了．感觉上很简单，就是需要连接一下电脑，然后执行一条命令．(.^.)不过，需要注意的在电脑上执行fastboot命令时需要该fastboot能识别出nexus5x.本来下了个linux版的fastboot，可是无法识别出已经连接的设备；恩，无奈最后换成windows10，按照这个链接 <a href="http://www.teamandroid.com/2016/09/08/root-nexus-5x-android-7-0-nrd90s-nougat-security-update/">root </a>的指示安好了驱动（在这个过程中我是下载了android sdk,里面的extra有google的通用设备驱动,然后更新安装设备管理器里的驱动)，fastboot终于能识别手机了．在之前所说的fastboot模式下,通过数据线连上电脑．然后打开命令行，执行 fastboot oem unclock (注意此时如果执行fastboot devices应该是可以看到设备的，看不到就是驱动没装好)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org44f1f0d" class="outline-3">
+<h3 id="org44f1f0d">刷Recovery</h3>
+<div class="outline-text-3" id="text-org44f1f0d">
+<p>
+这个过程我想说三点：
+</p>
+</div>
+<div id="outline-container-org072b040" class="outline-4">
+<h4 id="org072b040">首先,一定要注意，twrp和cwm以及后面的superSU都要从官网下！！！！官网！！！这里给个 <a href="https://twrp.me/Devices/">twrp</a> 的官网链接.</h4>
+</div>
+<div id="outline-container-org58a589a" class="outline-4">
+<h4 id="org58a589a">然后提个醒，刷完recovery之后直接就要把superSU刷进去，所以事先要把superSU.zip放在手机里面一个明显的地方.</h4>
+</div>
+<div id="outline-container-org4f3ae6e" class="outline-4">
+<h4 id="org4f3ae6e">最后需要做的就是，下个twrp 或者 cwm　recovery然后通过之前的fastboot 执行 fastboot flash recovery **.img 就可以了(手机处于fastboot模式下)</h4>
+</div>
+</div>
+
+<div id="outline-container-org9f961ad" class="outline-3">
+<h3 id="org9f961ad">刷superSU</h3>
+<div class="outline-text-3" id="text-org9f961ad">
+<p>
+按音量键切换到recovery模式下,或是刷入，或是安装,选择之前的superSU.zip，然后应该就算是root成功了(开机之后系统会多一个superSU软件)
+</p>
+</div>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+
+    <div>
+    <section id="wrapper">
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-11-12</span>
+        <span title="tags" class="post-info"><a href="/tags/android/">android</a></span>
+      </div>
+      <br />
+      <br />
+      <section>
+        <h1>Comments</h1>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'thiefuniverse'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-91796892-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div align="center">
+      <footer id="footer">
+        <p class="small">
+          Copyright &copy; 2016 - <span id="footerYear"></span> <a href="mailto:thiefuniverses &lt;at&gt; gmail &lt;dot&gt; com">ThankFly</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+        <br />
+      </footer>
+      </div>
+      </section>
+    </div>
+
+  </body>
+</html>

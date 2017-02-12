@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Arch安装注意事项 - Valley of Thief</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="ThankFly" />
+        <meta name="description" content="change to a wonderful system" />
+        <meta name="keywords" content="linux,system" />
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">
+    <style type="text/css"></style>
+</head>
+
+  <body class="container">
+    <nav class="main-nav">
+        <a href="/blog">Archive</a>
+        <a href="/tags">Tag</a>
+        <a href="/about/">About</a>
+        <a class="cta" href="https://github.com/thiefuniverse/">GitHub</a>
+    </nav>
+
+<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>Arch安装注意事项</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+<div id="outline-container-org1851424" class="outline-2">
+<h2 id="org1851424">lightdm的使用</h2>
+<div class="outline-text-2" id="text-org1851424">
+<p>
+/etc/lightdm/lightdm.conf是主体配置文件,可以把greet－xsession设置成自己想要的
+greeter.有不同的登录界面可以选择,比如lightdm-gtk-greeter,lightdm-webkit(2)-greeter,
+试了半天发现webkit2这个主题比较酷炫的greeter并不能用,感到很无奈,只好用着lightdm-gtk-greeter.
+当然这个gtk的登录界面也可以进行简单配置的.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge1b1e05" class="outline-2">
+<h2 id="orge1b1e05">输入法无法切换和应用字体出现空格</h2>
+<div class="outline-text-2" id="text-orge1b1e05">
+<p>
+输入法无法切换这一点纠结了我很久,之前一直用的ubuntu下的搜狗输入法,现在也仍装了它.
+arch下安装软件还是比较方便的,但是一直切换不出来搜狗输入法让人很无奈,搜了半天最后发
+现似乎是在配置文件里加入
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-sh">export LANG=zh_CN.UTF-8
+export LANGUAGE=zh_CN:en_US
+export LC_CTYPE=en_US.UTF-8
+
+export XIM="fcitx"
+export XIM_PROGRAM="fcitx"
+export XMODIFIERS="@im=fcitx"ｄ
+export GTK_IM_MODULE="fcitx"
+export QT_IM_MODULE="fcitx"
+</pre>
+</div>
+
+<p>
+这些配置,然而,也不知道该加入哪个配置文件,/etc/locale.conf,~/.xinitrc,~/.xprofile,
+/etc/environment都加了最后不知怎么就可以调用了,只是同时也发现clion乱码了,很失望:(
+</p>
+
+
+<p>
+至于乱码是怎么解决的呢?
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfb41f61" class="outline-2">
+<h2 id="orgfb41f61">安装kde-base及相关依赖包</h2>
+<div class="outline-text-2" id="text-orgfb41f61">
+<p>
+ 安装了kde的字体工具,基本的字体文件之后,一看发现之前有空格的应用现在都正常了.  :)
+不得不说kde这个系列还是很不错的,只是电脑性能太差了,很容易卡.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3b754c4" class="outline-2">
+<h2 id="org3b754c4">进入不了kde桌面</h2>
+<div class="outline-text-2" id="text-org3b754c4">
+<p>
+看archwiki上说kde5用sddm比较好的意思(也可能是我理解错了),最后偶然把lightdmf关了,换成
+了gdm,竟然一下可以进入plasma界面了.恩,然后体验了一把gnome和kde的卡,对比了一下发现了我
+xfce的流畅简洁.    :)
+</p>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+
+    <div>
+    <section id="wrapper">
+      <div class="post-meta">
+        <span title="post date" class="post-info">2017-02-12</span>
+        <span title="tags" class="post-info"><a href="/tags/archlinux/">archlinux</a></span>
+      </div>
+      <br />
+      <br />
+      <section>
+        <h1>Comments</h1>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'thiefuniverse'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-91796892-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div align="center">
+      <footer id="footer">
+        <p class="small">
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:thiefuniverses &lt;at&gt; gmail &lt;dot&gt; com">ThankFly</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+        <br />
+      </footer>
+      </div>
+      </section>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>C++ abstract_class,interface,inherit - Valley of Thief</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="ThankFly" />
+        <meta name="description" content="basic comprehension for C++" />
+        <meta name="keywords" content="c++,abstract,interface,inherit" />
+
+    <link rel="stylesheet" href="/media/css/style.css">
+    <link rel="stylesheet" href="/media/css/highlight.css">    
+    <style type="text/css"></style>
+</head>
+
+  <body class="container">
+    <nav class="main-nav">
+	<a href="/">Valley</a>
+        <a href="/blog">Archive</a>
+        <a href="/tags">Tag</a>
+        <a href="/about/">About</a>
+        <a class="cta" href="https://github.com/thiefuniverse/">GitHub</a>
+    </nav>
+              </div>
+              <img class="avatar" src="/media/images/younai.jpeg"/>
+
+<div>
+    <section id="wrapper">
+        <article class="post">
+            <header>
+                    <h1>C++ abstract_class,interface,inherit</h1>
+            </header>
+            <br />
+            <section id="post-body">
+                
+
+<div id="outline-container-org3f36b74" class="outline-2">
+<h2 id="org3f36b74">C++ 抽象类和接口的实现</h2>
+<div class="outline-text-2" id="text-org3f36b74">
+<p>
+C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚函数时,则可实现该类的接口作用.如果类中含有纯虚函数也有其他变量,此时该抽象类可以作为一个父类(而不只是接口)来提供基本的变量和属性.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgfa1c4a1" class="outline-2">
+<h2 id="orgfa1c4a1">虚函数的动态绑定</h2>
+<div class="outline-text-2" id="text-orgfa1c4a1">
+<p>
+下面这段代码中让父类类型的指针指向子类的object,当父类的hello方法声明为虚函数时,该指针可动态地自动调用子类(本身它指向的就是子类的object)的方法;然而如果父类不声明为虚函数时,该指针会执行父类的hello函数.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-C++">#include &lt;iostream&gt;
+  class Parent
+  {
+  public:
+  virtual void hello(){
+      std::cout &lt;&lt; "I'm parent.\n";
+  }
+  };
+
+  class child: public Parent
+  {
+      public :
+      void hello()
+      {
+	  std::cout &lt;&lt; "I'm child.";
+      }
+  };
+  int main()
+  {
+      Parent *a=new child();
+      a-&gt;hello();
+      return 0;
+  }
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1937a55" class="outline-2">
+<h2 id="org1937a55">三种继承的性质</h2>
+<div class="outline-text-2" id="text-org1937a55">
+</div><div id="outline-container-org0433d53" class="outline-3">
+<h3 id="org0433d53">public 继承</h3>
+<div class="outline-text-3" id="text-org0433d53">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">public</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org428fe7c" class="outline-3">
+<h3 id="org428fe7c">private 继承</h3>
+<div class="outline-text-3" id="text-org428fe7c">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org14b946c" class="outline-3">
+<h3 id="org14b946c">protected 继承</h3>
+<div class="outline-text-3" id="text-org14b946c">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+其中,三种访问标号的 <b>访问范围</b> 是:
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc26039b" class="outline-3">
+<h3 id="orgc26039b">private:</h3>
+<div class="outline-text-3" id="text-orgc26039b">
+</div><div id="outline-container-org705c5af" class="outline-4">
+<h4 id="org705c5af">该类中的函数</h4>
+</div>
+<div id="outline-container-org094a199" class="outline-4">
+<h4 id="org094a199">该类的友元函数</h4>
+</div>
+<div id="outline-container-orgf20cd3f" class="outline-4">
+<h4 id="orgf20cd3f">不能被任何其他访问,该类的object也不能访问.</h4>
+</div>
+</div>
+
+<div id="outline-container-org3285d14" class="outline-3">
+<h3 id="org3285d14">protected:</h3>
+<div class="outline-text-3" id="text-org3285d14">
+</div><div id="outline-container-org989e0cb" class="outline-4">
+<h4 id="org989e0cb">该类的函数</h4>
+</div>
+<div id="outline-container-orge377c88" class="outline-4">
+<h4 id="orge377c88">子类的函数</h4>
+</div>
+<div id="outline-container-org8d8dfd0" class="outline-4">
+<h4 id="org8d8dfd0">该类的友元函数,该类的object也不能访问</h4>
+</div>
+</div>
+
+<div id="outline-container-orga37e35c" class="outline-3">
+<h3 id="orga37e35c">public:</h3>
+<div class="outline-text-3" id="text-orga37e35c">
+</div><div id="outline-container-orgdbd736e" class="outline-4">
+<h4 id="orgdbd736e">该类中的函数</h4>
+</div>
+<div id="outline-container-org808635e" class="outline-4">
+<h4 id="org808635e">子类的函数</h4>
+</div>
+<div id="outline-container-org1ffae28" class="outline-4">
+<h4 id="org1ffae28">该类的友元函数</h4>
+</div>
+<div id="outline-container-orgdc5330d" class="outline-4">
+<h4 id="orgdc5330d">该类的对象</h4>
+</div>
+</div>
+</div>
+
+            </section>
+    </section>
+</div>
+
+    <div>
+    <section id="wrapper">
+      <div class="post-meta">
+        <span title="post date" class="post-info">2016-09-29</span>
+        <span title="tags" class="post-info"><a href="/tags/c++/">C++</a></span>
+      </div>
+      <br />
+      <br />
+      <section>
+        <h1>Comments</h1>
+        <div class="ds-thread"></div>
+        <script type="text/javascript">
+          var duoshuoQuery = {short_name:'thiefuniverse'};
+          (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0]
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+          })();
+        </script>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-91796892-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div align="center">
+      <footer id="footer">
+        <p class="small">
+          Copyright &copy; 2016 - <span id="footerYear"></span> <a href="mailto:thiefuniverses &lt;at&gt; gmail &lt;dot&gt; com">ThankFly</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+        <br />
+      </footer>
+      </div>
+      </section>
+    </div>
+
+  </body>
+</html>
