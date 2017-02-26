@@ -1,6 +1,0 @@
-  <br><br>
-        <nav class="main-nav">
-          <a href="/blog">Blog</a>||
-          <a href="{{github-link}}">Github</a>||
-        <a>About me</a>
-        </nav>
