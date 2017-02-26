@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Thief&#39;s Valley</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="thief" />
+        <meta name="description" content="Welcome to Thief&#39;s Valley!" />
+        <meta name="keywords" content="thiefuniverse flythief" />
+
+    <meta name="viewport" content="width=device-width">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="../../../media/stylesheets/styles.css">
+    <link rel="stylesheet" href="../../../media/stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width">
+    <style type="text/css"></style>
+</head>
+
+<body class="wrapper">
+  <header>
+    <h1>C++ abstract_class, interface, inherit</h1>
+<br>
+<nav class="main-nav">
+  <ul class="keywords">
+      <li> <img class="keywords-image" src="../../../media/img/keywords.png">inherit</li>
+      <li> <img class="keywords-image" src="../../../media/img/keywords.png">interface</li>
+      <li> <img class="keywords-image" src="../../../media/img/keywords.png">abstract</li>
+      <li> <img class="keywords-image" src="../../../media/img/keywords.png">c++</li>
+
+  </ul>
+  <a id="to_home" href="../../../index.html"><img src="../../../media/img/to_home.png"><b>Home</b></a>
+</nav>
+
+  </header>
+  <section>
+    
+
+<div id="outline-container-orgc52ab64" class="outline-2">
+<h2 id="orgc52ab64">C++ 抽象类和接口的实现</h2>
+<div class="outline-text-2" id="text-orgc52ab64">
+<p>
+C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚函数时,则可实现该类的接口作用.如果类中含有纯虚函数也有其他变量,此时该抽象类可以作为一个父类(而不只是接口)来提供基本的变量和属性.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org2616075" class="outline-2">
+<h2 id="org2616075">虚函数的动态绑定</h2>
+<div class="outline-text-2" id="text-org2616075">
+<p>
+下面这段代码中让父类类型的指针指向子类的object,当父类的hello方法声明为虚函数时,该指针可动态地自动调用子类(本身它指向的就是子类的object)的方法;然而如果父类不声明为虚函数时,该指针会执行父类的hello函数.
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #FFA000;">#include</span> <span style="color: #689f38;">&lt;iostream&gt;</span>
+  <span style="color: #00796b;">class</span> <span style="color: #0097A7;">Parent</span>
+  {
+  <span style="color: #00796b;">public</span>:
+  <span style="color: #00796b;">virtual</span> <span style="color: #0097A7;">void</span> <span style="color: #0097A7;">hello</span>(){
+      <span style="color: #558b2f;">std</span>::cout &lt;&lt; <span style="color: #689f38;">"I'm parent.\n"</span>;
+  }
+  };
+
+  <span style="color: #00796b;">class</span> <span style="color: #0097A7;">child</span>: <span style="color: #00796b;">public</span> <span style="color: #0097A7;">Parent</span>
+  {
+      <span style="color: #00796b;">public</span> :
+      <span style="color: #0097A7;">void</span> <span style="color: #0097A7;">hello</span>()
+      {
+          <span style="color: #558b2f;">std</span>::cout &lt;&lt; <span style="color: #689f38;">"I'm child."</span>;
+      }
+  };
+  <span style="color: #0097A7;">int</span> <span style="color: #0097A7;">main</span>()
+  {
+      <span style="color: #0097A7;">Parent</span> *<span style="color: #EF6C00;">a</span>=<span style="color: #00796b;">new</span> <span style="color: #0097A7;">child</span>();
+      a-&gt;hello();
+      <span style="color: #00796b;">return</span> 0;
+  }
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf34686a" class="outline-2">
+<h2 id="orgf34686a">三种继承的性质</h2>
+<div class="outline-text-2" id="text-orgf34686a">
+</div><div id="outline-container-org93c449b" class="outline-3">
+<h3 id="org93c449b">public 继承</h3>
+<div class="outline-text-3" id="text-org93c449b">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">public</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd3249f3" class="outline-3">
+<h3 id="orgd3249f3">private 继承</h3>
+<div class="outline-text-3" id="text-orgd3249f3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">private</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+<div id="outline-container-org902b83e" class="outline-3">
+<h3 id="org902b83e">protected 继承</h3>
+<div class="outline-text-3" id="text-org902b83e">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">父类</td>
+<td class="org-left">子类</td>
+</tr>
+
+<tr>
+<td class="org-left">public</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">protected</td>
+<td class="org-left">protected</td>
+</tr>
+
+<tr>
+<td class="org-left">private</td>
+<td class="org-left">no power</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+其中,三种访问标号的 <b>访问范围</b> 是:
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0e78b3d" class="outline-3">
+<h3 id="org0e78b3d">private:</h3>
+<div class="outline-text-3" id="text-org0e78b3d">
+</div><div id="outline-container-org50e2e51" class="outline-4">
+<h4 id="org50e2e51">该类中的函数</h4>
+</div>
+<div id="outline-container-orgc212d28" class="outline-4">
+<h4 id="orgc212d28">该类的友元函数</h4>
+</div>
+<div id="outline-container-orgf898a77" class="outline-4">
+<h4 id="orgf898a77">不能被任何其他访问,该类的object也不能访问.</h4>
+</div>
+</div>
+
+<div id="outline-container-orgf45494f" class="outline-3">
+<h3 id="orgf45494f">protected:</h3>
+<div class="outline-text-3" id="text-orgf45494f">
+</div><div id="outline-container-orgbda4781" class="outline-4">
+<h4 id="orgbda4781">该类的函数</h4>
+</div>
+<div id="outline-container-org5e5f46c" class="outline-4">
+<h4 id="org5e5f46c">子类的函数</h4>
+</div>
+<div id="outline-container-orgcd621c2" class="outline-4">
+<h4 id="orgcd621c2">该类的友元函数,该类的object也不能访问</h4>
+</div>
+</div>
+
+<div id="outline-container-orgb031265" class="outline-3">
+<h3 id="orgb031265">public:</h3>
+<div class="outline-text-3" id="text-orgb031265">
+</div><div id="outline-container-org7b493a6" class="outline-4">
+<h4 id="org7b493a6">该类中的函数</h4>
+</div>
+<div id="outline-container-orgf58481d" class="outline-4">
+<h4 id="orgf58481d">子类的函数</h4>
+</div>
+<div id="outline-container-org5e5cd22" class="outline-4">
+<h4 id="org5e5cd22">该类的友元函数</h4>
+</div>
+<div id="outline-container-orgf5671cb" class="outline-4">
+<h4 id="orgf5671cb">该类的对象</h4>
+</div>
+</div>
+</div>
+
+  </section>
+  <footer>
+  <small><a href=""><strong>ThankFly</strong></a>'s <a href="index.html">Personal Blog</a>.</small>
+  <br>
+  <small>about this page's <a href="https://github.com/orderedlist">generation</a></small>
+</footer>
+<script src="javascripts/scale.fix.js"></script>
+<script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>

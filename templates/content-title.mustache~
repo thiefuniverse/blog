@@ -1,0 +1,3 @@
+<h1>{{current-title}}</h1>
+<h3>{{blog-proverb}}</h3>
+<a href="index.html"><b>Home</b></a>

@@ -1,0 +1,16 @@
+{{! ARGS: blog-name, master-name, avatar, one-cool-sentance}}
+
+<b>
+<h1 id="master-name">{{blog-name}}<em>{{master-name}}</em></h1>
+</b>
+
+
+{{#avatar}}
+<img class="avatar" src="{{avatar}}" hint="hehe" />
+ {{/avatar}}
+
+<br>
+
+<small>
+{{one-cool-sentance}}
+</small>

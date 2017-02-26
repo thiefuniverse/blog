@@ -1,0 +1,14 @@
+#+TITLE:       Mustache--Logic-Less templates
+#+AUTHOR:      thief
+#+EMAIL:       thiefuniverses@gmail.com
+#+DATE:        2017-02-27
+#+URI:         articles/2017/02/mustache_tempalte
+#+TAGS:        template,mustache
+#+LANGUAGE:    en
+#+OPTIONS:     toc:nil  num:nil 
+
+
+
+* 基本原理
+** 通过hash表来赋值创建模板
+   
