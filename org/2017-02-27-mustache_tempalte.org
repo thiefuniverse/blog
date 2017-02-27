@@ -3,6 +3,7 @@
 #+EMAIL:       thiefuniverses@gmail.com
 #+DATE:        2017-02-27
 #+URI:         articles/2017/02/mustache_tempalte
+#+KEYWORDS:    mustache
 #+TAGS:        template,mustache
 #+LANGUAGE:    en
 #+OPTIONS:     toc:nil  num:nil 

@@ -10,4 +10,3 @@
 ** C++ (basic)
 ** elisp (like emacs)
 ** Be skilled at linux environment.
-
