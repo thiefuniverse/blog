@@ -1,26 +1,26 @@
 
-<div id="outline-container-org694731e" class="outline-2">
-<h2 id="org694731e">Introduction</h2>
-<div class="outline-text-2" id="text-org694731e">
+<div id="outline-container-org341ca14" class="outline-2">
+<h2 id="org341ca14">Introduction</h2>
+<div class="outline-text-2" id="text-org341ca14">
 <p>
 mustache是一个模板体系,定义了一种很简单而实用的模板实现.下文中你可以看到这个模板体系的基本特点和python实现的使用方式．
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4e7e4f0" class="outline-2">
-<h2 id="org4e7e4f0">Basic Theory</h2>
-<div class="outline-text-2" id="text-org4e7e4f0">
+<div id="outline-container-org2227776" class="outline-2">
+<h2 id="org2227776">Basic Theory</h2>
+<div class="outline-text-2" id="text-org2227776">
 <p>
 (以下代码用python3进行演示,使用了mustache模板的python实现，库名叫pystache)
 </p>
 </div>
-<div id="outline-container-org553ee44" class="outline-3">
-<h3 id="org553ee44">通过hash表来赋值创建模板</h3>
-<div class="outline-text-3" id="text-org553ee44">
-</div><div id="outline-container-org424b7ee" class="outline-4">
-<h4 id="org424b7ee">基本变量(键值)渲染</h4>
-<div class="outline-text-4" id="text-org424b7ee">
+<div id="outline-container-orgb89fa59" class="outline-3">
+<h3 id="orgb89fa59">通过hash表来赋值创建模板</h3>
+<div class="outline-text-3" id="text-orgb89fa59">
+</div><div id="outline-container-org4a9c38b" class="outline-4">
+<h4 id="org4a9c38b">基本变量(键值)渲染</h4>
+<div class="outline-text-4" id="text-org4a9c38b">
 <div class="org-src-container">
 <pre class="src src-python">{{=&lt;% %&gt;=}}
 <span style="color: #00796b;">import</span> pystache
@@ -32,9 +32,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </div>
 </div>
 
-<div id="outline-container-orgc5233ad" class="outline-4">
-<h4 id="orgc5233ad">变量真值条件渲染</h4>
-<div class="outline-text-4" id="text-orgc5233ad">
+<div id="outline-container-orgbf5a911" class="outline-4">
+<h4 id="orgbf5a911">变量真值条件渲染</h4>
+<div class="outline-text-4" id="text-orgbf5a911">
 <p>
 通过判断hashtable中键值(#加变量)是否存在(存在即为真值，或者变量名前加<sup>时只有变量值为假才渲染模板</sup>)，来渲染模板．
 </p>
@@ -65,9 +65,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </div>
 </div>
 
-<div id="outline-container-org78e650f" class="outline-4">
-<h4 id="org78e650f">控制转义(3*{或者&amp;符号)</h4>
-<div class="outline-text-4" id="text-org78e650f">
+<div id="outline-container-org34ffd9f" class="outline-4">
+<h4 id="org34ffd9f">控制转义(3*{或者&amp;符号)</h4>
+<div class="outline-text-4" id="text-org34ffd9f">
 <p>
 对于变量值，如果是&lt;等其他一些特殊字符会被 <b>转义</b> ，用三个大括号或者&amp;符号可以取消转义，保留原字符．
 </p>
@@ -88,9 +88,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </div>
 </div>
 
-<div id="outline-container-org7c15d80" class="outline-4">
-<h4 id="org7c15d80">列表渲染</h4>
-<div class="outline-text-4" id="text-org7c15d80">
+<div id="outline-container-org9ab183a" class="outline-4">
+<h4 id="org9ab183a">列表渲染</h4>
+<div class="outline-text-4" id="text-org9ab183a">
 <p>
 对于列表，还可以作列表渲染．当#变量存在，且hashtable中的值对应为一个列表时，mustache会进行列表渲染．
 分别针对值列表的每个元素依次渲染出结果．
@@ -118,9 +118,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </div>
 </div>
 
-<div id="outline-container-org56f4316" class="outline-4">
-<h4 id="org56f4316">注释方式</h4>
-<div class="outline-text-4" id="text-org56f4316">
+<div id="outline-container-orgf448d8c" class="outline-4">
+<h4 id="orgf448d8c">注释方式</h4>
+<div class="outline-text-4" id="text-orgf448d8c">
 <div class="org-src-container">
 <pre class="src src-python">{{=&lt;% %&gt;=}}
 {{! It <span style="color: #00796b;">is</span> a line <span style="color: #00796b;">for</span> comment }}
@@ -130,9 +130,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </div>
 </div>
 
-<div id="outline-container-orgd69fa2c" class="outline-4">
-<h4 id="orgd69fa2c">模板嵌套</h4>
-<div class="outline-text-4" id="text-orgd69fa2c">
+<div id="outline-container-orga387e4f" class="outline-4">
+<h4 id="orga387e4f">模板嵌套</h4>
+<div class="outline-text-4" id="text-orga387e4f">
 <p>
 mustache的标签支持模板嵌套(即一个模板中嵌入其他多个模板).如下是一个html模板嵌套的例子.
 </p>
@@ -159,9 +159,9 @@ mustache的标签支持模板嵌套(即一个模板中嵌入其他多个模板).
 </div>
 </div>
 
-<div id="outline-container-org2a00a32" class="outline-4">
-<h4 id="org2a00a32">标签符号修改</h4>
-<div class="outline-text-4" id="text-org2a00a32">
+<div id="outline-container-org92de405" class="outline-4">
+<h4 id="org92de405">标签符号修改</h4>
+<div class="outline-text-4" id="text-org92de405">
 <p>
 mustache的标签可以在渲染过程中修改,原始为两个大括号.
 </p>
@@ -178,9 +178,9 @@ mustache的标签可以在渲染过程中修改,原始为两个大括号.
 </div>
 </div>
 
-<div id="outline-container-org8619ddd" class="outline-4">
-<h4 id="org8619ddd">lambda 表达式支持</h4>
-<div class="outline-text-4" id="text-org8619ddd">
+<div id="outline-container-orgd3fd515" class="outline-4">
+<h4 id="orgd3fd515">lambda 表达式支持</h4>
+<div class="outline-text-4" id="text-orgd3fd515">
 <p>
 mustache标签支持lambda表达式来渲染改变标签内文字.(本人并未实践，感兴趣大家可以试试😆)
 </p>
