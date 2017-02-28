@@ -1,87 +1,188 @@
 
-<div id="outline-container-orgf93afab" class="outline-2">
-<h2 id="orgf93afab">恩，首先～前方高能，大量剧透</h2>
-<div class="outline-text-2" id="text-orgf93afab">
-</div><div id="outline-container-org5c6cebb" class="outline-3">
-<h3 id="org5c6cebb">首先,这个系列有两部～</h3>
-<div class="outline-text-3" id="text-org5c6cebb">
+<div id="outline-container-org694731e" class="outline-2">
+<h2 id="org694731e">Introduction</h2>
+<div class="outline-text-2" id="text-org694731e">
 <p>
-这个系列有两部，一部叫2001太空漫游，第二部叫2010威震太阳神．恩，第一部总共
-两个半小时左右，可实际有剧情的时间大概只有一个半小时的样子～  :)  (是不是觉得
-很坑...)其他时间多半是背景音乐一放，然后就停不下来，直接就是飞船从这头飞到那头．
-我总觉得是不是导演偷懒了，虽然这配乐听着还是蛮刺激的．这个现象在第二部就好多了，
-恩，第二部一直都有剧情的～
+mustache是一个模板体系,定义了一种很简单而实用的模板实现.下文中你可以看到这个模板体系的基本特点和python实现的使用方式．
 </p>
+</div>
+</div>
 
+<div id="outline-container-org4e7e4f0" class="outline-2">
+<h2 id="org4e7e4f0">Basic Theory</h2>
+<div class="outline-text-2" id="text-org4e7e4f0">
 <p>
-再到如今发展到现在的地步，让人震撼！狂躁的猩猩看着黑色立方体，疯狂地敲击着地上
-的骨头，特写让人心惊！这就是人类的原始本质吗～
+(以下代码用python3进行演示,使用了mustache模板的python实现，库名叫pystache)
 </p>
 </div>
-<div id="outline-container-org183f2a3" class="outline-4">
-<h4 id="org183f2a3">究极的人工智能</h4>
-<div class="outline-text-4" id="text-org183f2a3">
+<div id="outline-container-org553ee44" class="outline-3">
+<h3 id="org553ee44">通过hash表来赋值创建模板</h3>
+<div class="outline-text-3" id="text-org553ee44">
+</div><div id="outline-container-org424b7ee" class="outline-4">
+<h4 id="org424b7ee">基本变量(键值)渲染</h4>
+<div class="outline-text-4" id="text-org424b7ee">
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;% %&gt;=}}
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">'Hi {{person}}!'</span>, {<span style="color: #689f38;">'person'</span>: <span style="color: #689f38;">'Mom'</span>}))
+<span style="color: #607d8b; font-style: italic;">#    </span><span style="color: #607d8b; font-style: italic;">: Hi Mom!</span>
+&lt;%={{ }}=%&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5233ad" class="outline-4">
+<h4 id="orgc5233ad">变量真值条件渲染</h4>
+<div class="outline-text-4" id="text-orgc5233ad">
 <p>
-第一部里这台HAL9000电脑全程表现出令人担忧的智能．据结尾剧情和第二部的解释才
-知道，HAL通过读唇语得知两个宇航员要把他(:))关闭后，觉得有必要杀死所有宇航员，独
-自完成任务．同时他也确实这么做了，其中一个宇航员在太空中换零件时，HAL控制的逃生舱
-伸出了机械手，把宇航员狠狠推了出去．看着寂静的太空中，一个人影独自挣扎，实在很让人
-心惊．另一个宇航员Bowman立刻出来把他的尸体找了回来，只是HAL却关闭了入口，同时也关
-闭了其他三个休眠状态的宇航员的生命维持装置，杀了他们．最终，Bowman关闭了HAL，然而，
-关闭之后发现了其中的秘密，同时，在又一次遇到黑色立方体之后:Bowman 说了一句："My 
-god,it's full of stars"．结尾出现了不同时期的Bowman的画面，他躺在床上，看着床前面的立方体．
+通过判断hashtable中键值(#加变量)是否存在(存在即为真值，或者变量名前加<sup>时只有变量值为假才渲染模板</sup>)，来渲染模板．
 </p>
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;% %&gt;=}}
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"Hey {{#who}}{{.}}!{{/who}}"</span>)
 
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{})) <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">who &#19981;&#23384;&#22312;&#25925;&#19981;&#28210;&#26579;who&#26631;&#31614;&#37096;&#20998;</span>
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'thief'</span>}))&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#20998;&#21035;&#26681;&#25454;who&#30340;&#20540;&#28210;&#26579;&#20986;&#19981;&#21516;&#21477;&#23376;</span>
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'universe'</span>}))
 
-<div class="figure">
-<p><img src="http://ofi8au305.bkt.clouddn.com/stars.png" alt="stars.png" />
-</p>
-</div>
+<span style="color: #EF6C00;">context</span> = { <span style="color: #689f38;">'author'</span>: <span style="color: #689f38;">'Chris Wanstrath'</span>, <span style="color: #689f38;">'maintainer'</span>: <span style="color: #689f38;">'Chris Jerdonek'</span> }<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#19968;&#27425;&#20256;&#20837;&#22810;&#20010;&#20540;</span>
+<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">"Author: {{author}}\nMaintainer: {{maintainer}}"</span>, context))
+
+<span style="color: #00796b;">print</span>(pystache.render( <span style="color: #689f38;">"{{^is-sunny}}Take an umbrella!{{/is-sunny}}"</span>, {<span style="color: #689f38;">'is-sunny'</span>:<span style="color: #558b2f;">False</span>}))
+
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey </span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey thief!</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey universe!</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Author: Chris Wanstrath</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Maintainer: Chris Jerdonek</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Take an umbrella!</span>
+&lt;%={{ }}=%&gt;
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org0de218c" class="outline-3">
-<h3 id="org0de218c">第二部确实把坑基本填完了，看的很震撼</h3>
-<div class="outline-text-3" id="text-org0de218c">
-</div><div id="outline-container-org0983567" class="outline-4">
-<h4 id="org0983567">苏美联合～再探Discovery号</h4>
-<div class="outline-text-4" id="text-org0983567">
+<div id="outline-container-org78e650f" class="outline-4">
+<h4 id="org78e650f">控制转义(3*{或者&amp;符号)</h4>
+<div class="outline-text-4" id="text-org78e650f">
 <p>
-苏联的飞船造好了，可是怕和九年前的Discovery号发生同样的未知事故，于是想和Discovery
-的头头儿联合，同时还有Discovery的制造者以及HAL的制造者Chandra教授．
+对于变量值，如果是&lt;等其他一些特殊字符会被 <b>转义</b> ，用三个大括号或者&amp;符号可以取消转义，保留原字符．
 </p>
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;% %&gt;=}}  
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{company}}\n{{&amp;company}}\n{{{company}}}"</span>)
+
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'company'</span>:<span style="color: #689f38;">'&lt;b&gt;GitHub&lt;/b&gt;'</span>}))
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt;</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
+
+&lt;%={{ }}=%&gt;
+</pre>
 </div>
 </div>
-<div id="outline-container-org297c84a" class="outline-4">
-<h4 id="org297c84a">SAL, HAL and Chandra教授</h4>
-<div class="outline-text-4" id="text-org297c84a">
+</div>
+
+<div id="outline-container-org7c15d80" class="outline-4">
+<h4 id="org7c15d80">列表渲染</h4>
+<div class="outline-text-4" id="text-org7c15d80">
 <p>
-Chandra教授把自己制造的另一台电脑核心SAL带在了身上，关机之前SAL问她：Will I dream? Chandra教授毫不犹豫地回答说会．当HAL发现Discovery号可能毁灭，不能启动点火信号时，他问教授现在是不是有危险，教授觉得终于瞒不过他，承认了．HAL问如果不点火，他们会怎么样；教授说他们都会死．当大家都屏住呼吸，等待着这台电脑的最终回复时，HAL同意了点火，同时牺牲自己．他的价值已远远不是普通电脑可以比的，俨然是一个敢于牺牲的宇航员了（在我看来）．最后，HAL又问教授:Will I dream? 教授含着泪回答:I don't know. 恩，教授从一开始就把自己的程序当做一个人来看待，有感情，会怀疑，会反抗，甚至接受了命令之后还会撒谎（而撒谎终归是人教的）．觉得很震撼！
+对于列表，还可以作列表渲染．当#变量存在，且hashtable中的值对应为一个列表时，mustache会进行列表渲染．
+分别针对值列表的每个元素依次渲染出结果．
 </p>
 
 
-<div class="figure">
-<p><img src="http://ofi8au305.bkt.clouddn.com/hal.png" alt="hal.png" />
-</p>
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;% %&gt;=}}
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{#repo}}\nhello,{{name}}! you are {{age}}\n{{/repo}}"</span>)
+
+<span style="color: #00796b;">print</span>(renderer.render(parsed,
+                {<span style="color: #689f38;">'repo'</span>:[
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"thief"</span>,<span style="color: #689f38;">"age"</span>:33},
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"fly"</span>,<span style="color: #689f38;">"age"</span>:88},
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"universe"</span>,<span style="color: #689f38;">"age"</span>:99}
+                ]}))
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,thief! you are 33</span>
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,fly! you are 88</span>
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,universe! you are 99     </span>
+&lt;%={{ }}=%&gt;
+</pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc965b53" class="outline-4">
-<h4 id="orgc965b53">宇宙主宰</h4>
-<div class="outline-text-4" id="text-orgc965b53">
+<div id="outline-container-org56f4316" class="outline-4">
+<h4 id="org56f4316">注释方式</h4>
+<div class="outline-text-4" id="text-org56f4316">
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;% %&gt;=}}
+{{! It <span style="color: #00796b;">is</span> a line <span style="color: #00796b;">for</span> comment }}
+&lt;%={{ }}=%&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd69fa2c" class="outline-4">
+<h4 id="orgd69fa2c">模板嵌套</h4>
+<div class="outline-text-4" id="text-orgd69fa2c">
 <p>
-飞船开到木星的时候发现了木星附近有一个巨大的黑色立方体．一个探测飞船上去碰了碰就被一道白光毁了．正在这时，之前的Bowman来提醒头头儿迅速离开，这里很快会有一些奇妙的事情发生～(恩，说法有点奇怪～实际上)没多久立方体消失了，头头儿最终说服了苏联飞船，用Discovery号作为发射器加速，然后一起离开．正要离开时，看到木星某处出现了一个黑点，放大后发现，那正是无数的黑色立方体，吞噬星球的同时在迅速增加自身．在木星的爆炸中，电影结束了．地球上以后出现了两个可以看到的太阳．（恩，可能那不是木星，觉得不太合理）最后出现的画面就是，某个星球上，一块原始的沼泽地里，一块黑色立方体笔直地立在地上．．．．．
+mustache的标签支持模板嵌套(即一个模板中嵌入其他多个模板).如下是一个html模板嵌套的例子.
 </p>
+<div class="org-src-container">
+<pre class="src src-html">{{=&lt;&amp; &amp;&gt;=}}
+<span style="color: #607d8b; font-style: italic;">&lt;!-- </span><span style="color: #607d8b; font-style: italic;">use &gt; and tags name to embed tags-name.mustache file </span><span style="color: #607d8b; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #00796b;">!DOCTYPE</span> html&gt;
+&lt;<span style="color: #0097A7;">html</span> <span style="color: #EF6C00;">lang</span>=<span style="color: #689f38;">"en-us"</span>&gt;
+  {{&gt; header}}
+  &lt;<span style="color: #0097A7;">body</span> <span style="color: #EF6C00;">class</span>="wrapper"&gt;
+    &lt;<span style="color: #0097A7;">header</span>&gt;
+  {{&gt; person-zone}}
+  {{&gt; nav}}
+    &lt;/<span style="color: #0097A7;">header</span>&gt;
+    &lt;<span style="color: #0097A7;">section</span> <span style="color: #EF6C00;">id</span>=<span style="color: #689f38;">"blog-index"</span>&gt;
+  {{&gt; blog-index}}
+    &lt;/<span style="color: #0097A7;">section</span>&gt;
+    {{&gt; footer}}
+  &lt;/<span style="color: #0097A7;">body</span>&gt;
+&lt;/<span style="color: #0097A7;">html</span>&gt;
+&lt;&amp;={{ }}=&amp;&gt;
+</pre>
+</div>
 </div>
 </div>
 
-<div id="outline-container-orgd47ca9c" class="outline-4">
-<h4 id="orgd47ca9c">最后几句</h4>
-<div class="outline-text-4" id="text-orgd47ca9c">
+<div id="outline-container-org2a00a32" class="outline-4">
+<h4 id="org2a00a32">标签符号修改</h4>
+<div class="outline-text-4" id="text-org2a00a32">
 <p>
-觉得这个黑色立方体可能是高级生命体，也可能是生命的起源这种意思（指引黑猩猩用工具）．恩，人类在生命起源面前，太过渺小了～那个Bowman在星球爆炸之前，还发信息给自己在地球的妻子和母亲，恩，一副奔向新世界的样子，声称自己已经明白了一切．恩，宇宙主宰肯定不会写程序，我猜....最后，HAL我真是太喜欢了～
+mustache的标签可以在渲染过程中修改,原始为两个大括号.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python">{{=&lt;&amp; &amp;&gt;=}} 
+{{default_tags}} <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#21407;&#22987;&#26631;&#31614;</span>
+{{=&lt;% %&gt;=}}   <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#26631;&#31614;&#25913;&#21464;&#20026;&#31561;&#21495;&#20013;&#38388;&#30340;&#26032;&#26631;&#31614;</span>
+&lt;% erb_style_tags %&gt;&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#24212;&#29992;&#26032;&#26631;&#31614;</span>
+&lt;%={{ }}=%&gt; <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#25226;&#26631;&#31614;&#25913;&#22238;&#40664;&#35748;&#30340;</span>
+&lt;&amp;={{ }}=&amp;&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8619ddd" class="outline-4">
+<h4 id="org8619ddd">lambda 表达式支持</h4>
+<div class="outline-text-4" id="text-org8619ddd">
+<p>
+mustache标签支持lambda表达式来渲染改变标签内文字.(本人并未实践，感兴趣大家可以试试😆)
 </p>
 </div>
 </div>

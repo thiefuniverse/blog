@@ -34,13 +34,193 @@
   </header>
   <section>
     
+<div id="outline-container-org694731e" class="outline-2">
+<h2 id="org694731e">Introduction</h2>
+<div class="outline-text-2" id="text-org694731e">
+<p>
+mustache是一个模板体系,定义了一种很简单而实用的模板实现.下文中你可以看到这个模板体系的基本特点和python实现的使用方式．
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4e7e4f0" class="outline-2">
+<h2 id="org4e7e4f0">Basic Theory</h2>
+<div class="outline-text-2" id="text-org4e7e4f0">
+<p>
+(以下代码用python3进行演示,使用了mustache模板的python实现，库名叫pystache)
+</p>
+</div>
+<div id="outline-container-org553ee44" class="outline-3">
+<h3 id="org553ee44">通过hash表来赋值创建模板</h3>
+<div class="outline-text-3" id="text-org553ee44">
+</div><div id="outline-container-org424b7ee" class="outline-4">
+<h4 id="org424b7ee">基本变量(键值)渲染</h4>
+<div class="outline-text-4" id="text-org424b7ee">
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">'Hi {{person}}!'</span>, {<span style="color: #689f38;">'person'</span>: <span style="color: #689f38;">'Mom'</span>}))
+<span style="color: #607d8b; font-style: italic;">#    </span><span style="color: #607d8b; font-style: italic;">: Hi Mom!</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc5233ad" class="outline-4">
+<h4 id="orgc5233ad">变量真值条件渲染</h4>
+<div class="outline-text-4" id="text-orgc5233ad">
+<p>
+通过判断hashtable中键值(#加变量)是否存在(存在即为真值，或者变量名前加<sup>时只有变量值为假才渲染模板</sup>)，来渲染模板．
+</p>
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"Hey {{#who}}{{.}}!{{/who}}"</span>)
+
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{})) <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">who &#19981;&#23384;&#22312;&#25925;&#19981;&#28210;&#26579;who&#26631;&#31614;&#37096;&#20998;</span>
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'thief'</span>}))&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#20998;&#21035;&#26681;&#25454;who&#30340;&#20540;&#28210;&#26579;&#20986;&#19981;&#21516;&#21477;&#23376;</span>
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'universe'</span>}))
+
+<span style="color: #EF6C00;">context</span> = { <span style="color: #689f38;">'author'</span>: <span style="color: #689f38;">'Chris Wanstrath'</span>, <span style="color: #689f38;">'maintainer'</span>: <span style="color: #689f38;">'Chris Jerdonek'</span> }<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#19968;&#27425;&#20256;&#20837;&#22810;&#20010;&#20540;</span>
+<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">"Author: {{author}}\nMaintainer: {{maintainer}}"</span>, context))
+
+<span style="color: #00796b;">print</span>(pystache.render( <span style="color: #689f38;">"{{^is-sunny}}Take an umbrella!{{/is-sunny}}"</span>, {<span style="color: #689f38;">'is-sunny'</span>:<span style="color: #558b2f;">False</span>}))
+
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey </span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey thief!</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey universe!</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Author: Chris Wanstrath</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Maintainer: Chris Jerdonek</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Take an umbrella!</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org78e650f" class="outline-4">
+<h4 id="org78e650f">控制转义(3*{或者&amp;符号)</h4>
+<div class="outline-text-4" id="text-org78e650f">
+<p>
+对于变量值，如果是&lt;等其他一些特殊字符会被 <b>转义</b> ，用三个大括号或者&amp;符号可以取消转义，保留原字符．
+</p>
+<div class="org-src-container">
+<pre class="src src-python">  
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{company}}\n{{&amp;company}}\n{{& company}}"</span>)
+
+<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'company'</span>:<span style="color: #689f38;">'&lt;b&gt;GitHub&lt;/b&gt;'</span>}))
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt;</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
+<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
 
 
-<div id="outline-container-orgd4dbdf8" class="outline-2">
-<h2 id="orgd4dbdf8">基本原理</h2>
-<div class="outline-text-2" id="text-orgd4dbdf8">
-</div><div id="outline-container-orgf237867" class="outline-3">
-<h3 id="orgf237867">通过hash表来赋值创建模板</h3>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c15d80" class="outline-4">
+<h4 id="org7c15d80">列表渲染</h4>
+<div class="outline-text-4" id="text-org7c15d80">
+<p>
+对于列表，还可以作列表渲染．当#变量存在，且hashtable中的值对应为一个列表时，mustache会进行列表渲染．
+分别针对值列表的每个元素依次渲染出结果．
+</p>
+
+
+<div class="org-src-container">
+<pre class="src src-python">
+<span style="color: #00796b;">import</span> pystache
+<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
+<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{#repo}}\nhello,{{name}}! you are {{age}}\n{{/repo}}"</span>)
+
+<span style="color: #00796b;">print</span>(renderer.render(parsed,
+                {<span style="color: #689f38;">'repo'</span>:[
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"thief"</span>,<span style="color: #689f38;">"age"</span>:33},
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"fly"</span>,<span style="color: #689f38;">"age"</span>:88},
+                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"universe"</span>,<span style="color: #689f38;">"age"</span>:99}
+                ]}))
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,thief! you are 33</span>
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,fly! you are 88</span>
+<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,universe! you are 99     </span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org56f4316" class="outline-4">
+<h4 id="org56f4316">注释方式</h4>
+<div class="outline-text-4" id="text-org56f4316">
+<div class="org-src-container">
+<pre class="src src-python">
+{{! It <span style="color: #00796b;">is</span> a line <span style="color: #00796b;">for</span> comment }}
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd69fa2c" class="outline-4">
+<h4 id="orgd69fa2c">模板嵌套</h4>
+<div class="outline-text-4" id="text-orgd69fa2c">
+<p>
+mustache的标签支持模板嵌套(即一个模板中嵌入其他多个模板).如下是一个html模板嵌套的例子.
+</p>
+<div class="org-src-container">
+<pre class="src src-html">
+<span style="color: #607d8b; font-style: italic;">&lt;!-- </span><span style="color: #607d8b; font-style: italic;">use &gt; and tags name to embed tags-name.mustache file </span><span style="color: #607d8b; font-style: italic;">--&gt;</span>
+&lt;<span style="color: #00796b;">!DOCTYPE</span> html&gt;
+&lt;<span style="color: #0097A7;">html</span> <span style="color: #EF6C00;">lang</span>=<span style="color: #689f38;">"en-us"</span>&gt;
+  {{&gt; header}}
+  &lt;<span style="color: #0097A7;">body</span> <span style="color: #EF6C00;">class</span>="wrapper"&gt;
+    &lt;<span style="color: #0097A7;">header</span>&gt;
+  {{&gt; person-zone}}
+  {{&gt; nav}}
+    &lt;/<span style="color: #0097A7;">header</span>&gt;
+    &lt;<span style="color: #0097A7;">section</span> <span style="color: #EF6C00;">id</span>=<span style="color: #689f38;">"blog-index"</span>&gt;
+  {{&gt; blog-index}}
+    &lt;/<span style="color: #0097A7;">section</span>&gt;
+    {{&gt; footer}}
+  &lt;/<span style="color: #0097A7;">body</span>&gt;
+&lt;/<span style="color: #0097A7;">html</span>&gt;
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a00a32" class="outline-4">
+<h4 id="org2a00a32">标签符号修改</h4>
+<div class="outline-text-4" id="text-org2a00a32">
+<p>
+mustache的标签可以在渲染过程中修改,原始为两个大括号.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"> 
+{{default_tags}} <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#21407;&#22987;&#26631;&#31614;</span>
+{{=&lt;% %&gt;=}}   <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#26631;&#31614;&#25913;&#21464;&#20026;&#31561;&#21495;&#20013;&#38388;&#30340;&#26032;&#26631;&#31614;</span>
+&lt;% erb_style_tags %&gt;&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#24212;&#29992;&#26032;&#26631;&#31614;</span>
+&lt;%={{ }}=%&gt; <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#25226;&#26631;&#31614;&#25913;&#22238;&#40664;&#35748;&#30340;</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8619ddd" class="outline-4">
+<h4 id="org8619ddd">lambda 表达式支持</h4>
+<div class="outline-text-4" id="text-org8619ddd">
+<p>
+mustache标签支持lambda表达式来渲染改变标签内文字.(本人并未实践，感兴趣大家可以试试😆)
+</p>
+</div>
+</div>
 </div>
 </div>
 
