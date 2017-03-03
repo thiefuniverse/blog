@@ -38,9 +38,9 @@
   <section>
     
 
-<div id="outline-container-org33b0fb8" class="outline-2">
-<h2 id="org33b0fb8">C++ 抽象类和接口的实现</h2>
-<div class="outline-text-2" id="text-org33b0fb8">
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">C++ 抽象类和接口的实现</h2>
+<div class="outline-text-2" id="text-org-thief">
 <p>
 C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚函数时,则可实现该类的接口作用.如果类中含有纯虚函数也有其他变量,此时该抽象类可以作为一个父类(而不只是接口)来提供基本的变量和属性.
 </p>
@@ -48,9 +48,9 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 </div>
 
 
-<div id="outline-container-orgf3b5060" class="outline-2">
-<h2 id="orgf3b5060">虚函数的动态绑定</h2>
-<div class="outline-text-2" id="text-orgf3b5060">
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">虚函数的动态绑定</h2>
+<div class="outline-text-2" id="text-org-thief">
 <p>
 下面这段代码中让父类类型的指针指向子类的object,当父类的hello方法声明为虚函数时,该指针可动态地自动调用子类(本身它指向的就是子类的object)的方法;然而如果父类不声明为虚函数时,该指针会执行父类的hello函数.
 </p>
@@ -86,12 +86,12 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 </div>
 
 
-<div id="outline-container-org75f76a4" class="outline-2">
-<h2 id="org75f76a4">三种继承的性质</h2>
-<div class="outline-text-2" id="text-org75f76a4">
-</div><div id="outline-container-org4295574" class="outline-3">
-<h3 id="org4295574">public 继承</h3>
-<div class="outline-text-3" id="text-org4295574">
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">三种继承的性质</h2>
+<div class="outline-text-2" id="text-org-thief">
+</div><div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">public 继承</h3>
+<div class="outline-text-3" id="text-org-thief">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -127,9 +127,9 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 
 
 
-<div id="outline-container-orgcd75dae" class="outline-3">
-<h3 id="orgcd75dae">private 继承</h3>
-<div class="outline-text-3" id="text-orgcd75dae">
+<div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">private 继承</h3>
+<div class="outline-text-3" id="text-org-thief">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -165,9 +165,9 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 
 
 
-<div id="outline-container-org239c370" class="outline-3">
-<h3 id="org239c370">protected 继承</h3>
-<div class="outline-text-3" id="text-org239c370">
+<div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">protected 继承</h3>
+<div class="outline-text-3" id="text-org-thief">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -205,48 +205,48 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 </div>
 </div>
 
-<div id="outline-container-orga1b6139" class="outline-3">
-<h3 id="orga1b6139">private:</h3>
-<div class="outline-text-3" id="text-orga1b6139">
-</div><div id="outline-container-org0061436" class="outline-4">
-<h4 id="org0061436">该类中的函数</h4>
+<div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">private:</h3>
+<div class="outline-text-3" id="text-org-thief">
+</div><div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类中的函数</h4>
 </div>
-<div id="outline-container-org2f75654" class="outline-4">
-<h4 id="org2f75654">该类的友元函数</h4>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类的友元函数</h4>
 </div>
-<div id="outline-container-orgdcdbf11" class="outline-4">
-<h4 id="orgdcdbf11">不能被任何其他访问,该类的object也不能访问.</h4>
-</div>
-</div>
-
-<div id="outline-container-orgc4663d4" class="outline-3">
-<h3 id="orgc4663d4">protected:</h3>
-<div class="outline-text-3" id="text-orgc4663d4">
-</div><div id="outline-container-org085a49e" class="outline-4">
-<h4 id="org085a49e">该类的函数</h4>
-</div>
-<div id="outline-container-orgf6dd53e" class="outline-4">
-<h4 id="orgf6dd53e">子类的函数</h4>
-</div>
-<div id="outline-container-org2ad07e1" class="outline-4">
-<h4 id="org2ad07e1">该类的友元函数,该类的object也不能访问</h4>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">不能被任何其他访问,该类的object也不能访问.</h4>
 </div>
 </div>
 
-<div id="outline-container-org40aef78" class="outline-3">
-<h3 id="org40aef78">public:</h3>
-<div class="outline-text-3" id="text-org40aef78">
-</div><div id="outline-container-org8d92c25" class="outline-4">
-<h4 id="org8d92c25">该类中的函数</h4>
+<div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">protected:</h3>
+<div class="outline-text-3" id="text-org-thief">
+</div><div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类的函数</h4>
 </div>
-<div id="outline-container-orgcca8a38" class="outline-4">
-<h4 id="orgcca8a38">子类的函数</h4>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">子类的函数</h4>
 </div>
-<div id="outline-container-orga765787" class="outline-4">
-<h4 id="orga765787">该类的友元函数</h4>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类的友元函数,该类的object也不能访问</h4>
 </div>
-<div id="outline-container-org87a6db4" class="outline-4">
-<h4 id="org87a6db4">该类的对象</h4>
+</div>
+
+<div id="outline-container-thief" class="outline-3">
+<h3 id="org-thief">public:</h3>
+<div class="outline-text-3" id="text-org-thief">
+</div><div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类中的函数</h4>
+</div>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">子类的函数</h4>
+</div>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类的友元函数</h4>
+</div>
+<div id="outline-container-thief" class="outline-4">
+<h4 id="org-thief">该类的对象</h4>
 </div>
 </div>
 </div>
@@ -273,7 +273,7 @@ var duoshuoQuery = {short_name:"thiefuniverse"};
   <footer>
   <small><a href=""><strong>ThankFly</strong></a>'s <a href="index.html">Personal Blog</a>.</small>
   <br>
-  <small>about this page's <a href="https://github.com/orderedlist">generation</a></small>
+  <small>about this page's <a href="https://github.com/thiefuniverse/blog-minimal">generation</a></small>
 </footer>
 <script src="javascripts/scale.fix.js"></script>
 <script src="javascripts/scale.fix.js"></script>
