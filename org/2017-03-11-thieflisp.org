@@ -84,3 +84,8 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
    #+END_SRC
 
 ** 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~
+
+* Lisp外部资源:
+*** [[http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special][What makes lisp macro so special?]]
+*** [[http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html][why_lisp_is_superior]]
+*** 黑客与画家
