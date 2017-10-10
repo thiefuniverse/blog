@@ -47,8 +47,7 @@
   }
 #+END_SRC
 使用g++编译得到的汇编代码里可以大致看到两个函数的label名:
-[[/resource/img/assembly_overload.png]]
-
+[[https://thiefuniverse.github.io/resource/img/assembly_overload.png]]
 *  C++ 的引用
    从汇编代码可以明显看出来，引用实际本质上就是指针。
 
