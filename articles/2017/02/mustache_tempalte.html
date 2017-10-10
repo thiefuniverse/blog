@@ -58,9 +58,9 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 <div class="outline-text-4" id="text-org-thief">
 <div class="org-src-container">
 <pre class="src src-python">
-<span style="color: #00796b;">import</span> pystache
-<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">'Hi {{person}}!'</span>, {<span style="color: #689f38;">'person'</span>: <span style="color: #689f38;">'Mom'</span>}))
-<span style="color: #607d8b; font-style: italic;">#    </span><span style="color: #607d8b; font-style: italic;">: Hi Mom!</span>
+import pystache
+print(pystache.render('Hi {{person}}!', {'person': 'Mom'}))
+#    : Hi Mom!
 
 </pre>
 </div>
@@ -75,25 +75,25 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </p>
 <div class="org-src-container">
 <pre class="src src-python">
-<span style="color: #00796b;">import</span> pystache
-<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
-<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"Hey {{#who}}{{.}}!{{/who}}"</span>)
+import pystache
+renderer=pystache.Renderer()
+parsed = pystache.parse(u"Hey {{#who}}{{.}}!{{/who}}")
 
-<span style="color: #00796b;">print</span>(renderer.render(parsed,{})) <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">who &#19981;&#23384;&#22312;&#25925;&#19981;&#28210;&#26579;who&#26631;&#31614;&#37096;&#20998;</span>
-<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'thief'</span>}))&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#20998;&#21035;&#26681;&#25454;who&#30340;&#20540;&#28210;&#26579;&#20986;&#19981;&#21516;&#21477;&#23376;</span>
-<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'who'</span>:<span style="color: #689f38;">'universe'</span>}))
+print(renderer.render(parsed,{})) # who 不存在故不渲染who标签部分
+print(renderer.render(parsed,{'who':'thief'}))　#分别根据who的值渲染出不同句子
+print(renderer.render(parsed,{'who':'universe'}))
 
-<span style="color: #EF6C00;">context</span> = { <span style="color: #689f38;">'author'</span>: <span style="color: #689f38;">'Chris Wanstrath'</span>, <span style="color: #689f38;">'maintainer'</span>: <span style="color: #689f38;">'Chris Jerdonek'</span> }<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#19968;&#27425;&#20256;&#20837;&#22810;&#20010;&#20540;</span>
-<span style="color: #00796b;">print</span>(pystache.render(<span style="color: #689f38;">"Author: {{author}}\nMaintainer: {{maintainer}}"</span>, context))
+context = { 'author': 'Chris Wanstrath', 'maintainer': 'Chris Jerdonek' }# 一次传入多个值
+print(pystache.render("Author: {{author}}\nMaintainer: {{maintainer}}", context))
 
-<span style="color: #00796b;">print</span>(pystache.render( <span style="color: #689f38;">"{{^is-sunny}}Take an umbrella!{{/is-sunny}}"</span>, {<span style="color: #689f38;">'is-sunny'</span>:<span style="color: #558b2f;">False</span>}))
+print(pystache.render( "{{^is-sunny}}Take an umbrella!{{/is-sunny}}", {'is-sunny':False}))
 
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey </span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey thief!</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Hey universe!</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Author: Chris Wanstrath</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Maintainer: Chris Jerdonek</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: Take an umbrella!</span>
+# : Hey 
+# : Hey thief!
+# : Hey universe!
+# : Author: Chris Wanstrath
+# : Maintainer: Chris Jerdonek
+# : Take an umbrella!
 
 </pre>
 </div>
@@ -108,14 +108,14 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 </p>
 <div class="org-src-container">
 <pre class="src src-python">  
-<span style="color: #00796b;">import</span> pystache
-<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
-<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{company}}\n{{&amp;company}}\n{{& company}}"</span>)
+import pystache
+renderer=pystache.Renderer()
+parsed = pystache.parse(u"{{company}}\n{{&amp;company}}\n{{& company}}")
 
-<span style="color: #00796b;">print</span>(renderer.render(parsed,{<span style="color: #689f38;">'company'</span>:<span style="color: #689f38;">'&lt;b&gt;GitHub&lt;/b&gt;'</span>}))
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt;</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
-<span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">: &lt;b&gt;GitHub&lt;/b&gt;</span>
+print(renderer.render(parsed,{'company':'&lt;b&gt;GitHub&lt;/b&gt;'}))
+# : &amp;lt;b&amp;gt;GitHub&amp;lt;/b&amp;gt;
+# : &lt;b&gt;GitHub&lt;/b&gt;
+# : &lt;b&gt;GitHub&lt;/b&gt;
 
 
 </pre>
@@ -134,19 +134,19 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 
 <div class="org-src-container">
 <pre class="src src-python">
-<span style="color: #00796b;">import</span> pystache
-<span style="color: #EF6C00;">renderer</span>=pystache.Renderer()
-<span style="color: #EF6C00;">parsed</span> = pystache.parse(u<span style="color: #689f38;">"{{#repo}}\nhello,{{name}}! you are {{age}}\n{{/repo}}"</span>)
+import pystache
+renderer=pystache.Renderer()
+parsed = pystache.parse(u"{{#repo}}\nhello,{{name}}! you are {{age}}\n{{/repo}}")
 
-<span style="color: #00796b;">print</span>(renderer.render(parsed,
-                {<span style="color: #689f38;">'repo'</span>:[
-                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"thief"</span>,<span style="color: #689f38;">"age"</span>:33},
-                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"fly"</span>,<span style="color: #689f38;">"age"</span>:88},
-                          {<span style="color: #689f38;">"name"</span>:<span style="color: #689f38;">"universe"</span>,<span style="color: #689f38;">"age"</span>:99}
-                ]}))
-<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,thief! you are 33</span>
-<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,fly! you are 88</span>
-<span style="color: #607d8b; font-style: italic;">#  </span><span style="color: #607d8b; font-style: italic;">: hello,universe! you are 99     </span>
+print(renderer.render(parsed,
+		{'repo':[
+			  {"name":"thief","age":33},
+			  {"name":"fly","age":88},
+			  {"name":"universe","age":99}
+		]}))
+#  : hello,thief! you are 33
+#  : hello,fly! you are 88
+#  : hello,universe! you are 99     
 
 </pre>
 </div>
@@ -158,7 +158,7 @@ mustache是一个模板体系,定义了一种很简单而实用的模板实现.�
 <div class="outline-text-4" id="text-org-thief">
 <div class="org-src-container">
 <pre class="src src-python">
-{{! It <span style="color: #00796b;">is</span> a line <span style="color: #00796b;">for</span> comment }}
+{{! It is a line for comment }}
 
 </pre>
 </div>
@@ -173,21 +173,21 @@ mustache的标签支持模板嵌套(即一个模板中嵌入其他多个模板).
 </p>
 <div class="org-src-container">
 <pre class="src src-html">
-<span style="color: #607d8b; font-style: italic;">&lt;!-- </span><span style="color: #607d8b; font-style: italic;">use &gt; and tags name to embed tags-name.mustache file </span><span style="color: #607d8b; font-style: italic;">--&gt;</span>
-&lt;<span style="color: #00796b;">!DOCTYPE</span> html&gt;
-&lt;<span style="color: #0097A7;">html</span> <span style="color: #EF6C00;">lang</span>=<span style="color: #689f38;">"en-us"</span>&gt;
+&lt;!-- use &gt; and tags name to embed tags-name.mustache file --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-us"&gt;
   {{&gt; header}}
-  &lt;<span style="color: #0097A7;">body</span> <span style="color: #EF6C00;">class</span>="wrapper"&gt;
-    &lt;<span style="color: #0097A7;">header</span>&gt;
+  &lt;body class="wrapper"&gt;
+    &lt;header&gt;
   {{&gt; person-zone}}
   {{&gt; nav}}
-    &lt;/<span style="color: #0097A7;">header</span>&gt;
-    &lt;<span style="color: #0097A7;">section</span> <span style="color: #EF6C00;">id</span>=<span style="color: #689f38;">"blog-index"</span>&gt;
+    &lt;/header&gt;
+    &lt;section id="blog-index"&gt;
   {{&gt; blog-index}}
-    &lt;/<span style="color: #0097A7;">section</span>&gt;
+    &lt;/section&gt;
     {{&gt; footer}}
-  &lt;/<span style="color: #0097A7;">body</span>&gt;
-&lt;/<span style="color: #0097A7;">html</span>&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
 
 </pre>
 </div>
@@ -203,10 +203,10 @@ mustache的标签可以在渲染过程中修改,原始为两个大括号.
 
 <div class="org-src-container">
 <pre class="src src-python"> 
-{{default_tags}} <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#21407;&#22987;&#26631;&#31614;</span>
-{{=&lt;% %&gt;=}}   <span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#26631;&#31614;&#25913;&#21464;&#20026;&#31561;&#21495;&#20013;&#38388;&#30340;&#26032;&#26631;&#31614;</span>
-&lt;% erb_style_tags %&gt;&#12288;<span style="color: #607d8b; font-style: italic;">#</span><span style="color: #607d8b; font-style: italic;">&#24212;&#29992;&#26032;&#26631;&#31614;</span>
-&lt;%={{ }}=%&gt; <span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">&#25226;&#26631;&#31614;&#25913;&#22238;&#40664;&#35748;&#30340;</span>
+{{default_tags}} #原始标签
+{{=&lt;% %&gt;=}}   #标签改变为等号中间的新标签
+&lt;% erb_style_tags %&gt;　#应用新标签
+&lt;%={{ }}=%&gt; # 把标签改回默认的
 
 </pre>
 </div>
@@ -229,17 +229,7 @@ mustache标签支持lambda表达式来渲染改变标签内文字.(本人并未�
 <!-- duoshuo comment box end -->
 
 <!-- duoshuo comment js code start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"thiefuniverse"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+<script id="dsq-count-scr" src="//thiefuniverse.disqus.com/count.js" async></script>
 <!-- duoshuo comment js code end -->
 
   </section>

@@ -66,12 +66,12 @@
 %%
 {rules}
 %%
-{<span style="color: #0097A7;">user</span> <span style="color: #EF6C00;">subroutines</span>}
+{user subroutines}
 </pre>
 </div>
 
 <p>
-代码中这两个%%起到了分界作用，至关重要．这几类代码部分是不能混淆的，
+    代码中这两个%%起到了分界作用，至关重要．这几类代码部分是不能混淆的，
 不然就会编译出错．光是有规则还不够灵活，并不知道我们匹配到字符串之后可以
 做什么.于是，词法分析器的实现本源－－C出现了．在lex文件中可以直接在某些位置适当地添加C的源码，
 方便在匹配过程中执行自己的行为．下面是维基上给的例子:
@@ -79,35 +79,35 @@
 
 
 <div class="org-src-container">
-<pre class="src src-c"><span style="color: #607d8b; font-style: italic;">/*** </span><span style="color: #607d8b; font-style: italic;">Definition section **</span><span style="color: #607d8b; font-style: italic;">*/</span>
+<pre class="src src-c">/*** Definition section ***/
 
 %{
-<span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">C code to be copied verbatim </span><span style="color: #607d8b; font-style: italic;">*/</span>
-<span style="color: #FFA000;">#include</span> <span style="color: #689f38;">&lt;stdio.h&gt;</span>
+/* C code to be copied verbatim */
+#include &lt;stdio.h&gt;
 %}
 
-<span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">This tells flex to read only one input file </span><span style="color: #607d8b; font-style: italic;">*/</span>
+/* This tells flex to read only one input file */
 %option noyywrap
 
 %%
-<span style="color: #607d8b; font-style: italic;">/*** </span><span style="color: #607d8b; font-style: italic;">Rules section **</span><span style="color: #607d8b; font-style: italic;">*/</span>
+/*** Rules section ***/
 
-<span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">[0-9]+ matches a string of one or more digits </span><span style="color: #607d8b; font-style: italic;">*/</span>
+/* [0-9]+ matches a string of one or more digits */
 [0-9]+  {
-        <span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">yytext is a string containing the matched text. </span><span style="color: #607d8b; font-style: italic;">*/</span>
-            printf(<span style="color: #689f38;">"Saw an integer: %s\n"</span>, yytext);
+	/* yytext is a string containing the matched text. */
+	    printf("Saw an integer: %s\n", yytext);
     }
 
-.|\n    {   <span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">Ignore all other characters. </span><span style="color: #607d8b; font-style: italic;">*/</span>   }
+.|\n    {   /* Ignore all other characters. */   }
 
 %%
-<span style="color: #607d8b; font-style: italic;">/*** </span><span style="color: #607d8b; font-style: italic;">C Code section **</span><span style="color: #607d8b; font-style: italic;">*/</span>
+/*** C Code section ***/
 
-<span style="color: #0097A7;">int</span> main(<span style="color: #0097A7;">void</span>)
+int main(void)
 {
-<span style="color: #607d8b; font-style: italic;">/* </span><span style="color: #607d8b; font-style: italic;">Call the lexer, then quit. </span><span style="color: #607d8b; font-style: italic;">*/</span>
+/* Call the lexer, then quit. */
     yylex();
-    <span style="color: #00796b;">return</span> 0;
+    return 0;
 }
 </pre>
 </div>
@@ -161,17 +161,7 @@
 <!-- duoshuo comment box end -->
 
 <!-- duoshuo comment js code start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"thiefuniverse"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+<script id="dsq-count-scr" src="//thiefuniverse.disqus.com/count.js" async></script>
 <!-- duoshuo comment js code end -->
 
   </section>

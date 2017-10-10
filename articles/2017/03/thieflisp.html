@@ -43,7 +43,7 @@
 <h3 id="org-thief">Introduction</h3>
 <div class="outline-text-3" id="text-org-thief">
 <p>
-本系列ThiefLisp使用C++实现,参考了github上这个<a href="https://github.com/kanaka/mal/blob/master/process/guide.md"> mal </a>项目中的实现过程以及cpp实现.
+   本系列ThiefLisp使用C++实现,参考了github上这个<a href="https://github.com/kanaka/mal/blob/master/process/guide.md"> mal </a>项目中的实现过程以及cpp实现.
 Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理速度)无法满足需求以及它表面
 上看似让人无法接受的 <b>语法</b> (括号语法)，导致Lisp最终只是退居于人工智能领域等，而不是成为一门像C++
 一样流行的主流语言. Lisp包含许多现代高级语言的特性，如递归，垃圾回收，REPL等．尤其重要的
@@ -63,18 +63,18 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 </p>
 
 <div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #e91e63;">(</span><span style="color: #00796b;">defun</span> <span style="color: #0097A7;">rename-this-file-and-buffer</span> <span style="color: #1565C0;">(</span>new-name<span style="color: #1565C0;">)</span>
-  <span style="color: #673ab7;">"Rename both current buffer and file it's visiting to New Name"</span>
-  <span style="color: #1565C0;">(</span><span style="color: #00796b;">interactive</span> <span style="color: #689f38;">"sNew name : "</span><span style="color: #1565C0;">)</span>
-  <span style="color: #1565C0;">(</span><span style="color: #00796b;">let</span> <span style="color: #EF6C00;">(</span><span style="color: #B388FF;">(</span>name <span style="color: #76ff03;">(</span>buffer-name<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
-     <span style="color: #B388FF;">(</span>filename <span style="color: #76ff03;">(</span>buffer-file-name<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span>
-    <span style="color: #EF6C00;">(</span><span style="color: #00796b;">unless</span> filename
-   <span style="color: #B388FF;">(</span><span style="color: #B71C1C; font-weight: bold;">error</span> <span style="color: #689f38;">"Buffer '%s' is not visiting a file !"</span> name<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span>
-    <span style="color: #EF6C00;">(</span><span style="color: #00796b;">progn</span>
-   <span style="color: #B388FF;">(</span><span style="color: #00796b;">when</span> <span style="color: #76ff03;">(</span>file-exists-p filename<span style="color: #76ff03;">)</span>
-     <span style="color: #76ff03;">(</span>rename-file filename new-name 1<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
-   <span style="color: #B388FF;">(</span>set-visited-file-name new-name<span style="color: #B388FF;">)</span>
-   <span style="color: #B388FF;">(</span>rename-buffer new-name<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<pre class="src src-emacs-lisp">(defun rename-this-file-and-buffer (new-name)
+  "Rename both current buffer and file it's visiting to New Name"
+  (interactive "sNew name : ")
+  (let ((name (buffer-name))
+     (filename (buffer-file-name)))
+    (unless filename
+   (error "Buffer '%s' is not visiting a file !" name))
+    (progn
+   (when (file-exists-p filename)
+     (rename-file filename new-name 1))
+   (set-visited-file-name new-name)
+   (rename-buffer new-name))))
 </pre>
 </div>
 </div>
@@ -84,7 +84,7 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 <h3 id="org-thief">A Lisp Interpreter</h3>
 <div class="outline-text-3" id="text-org-thief">
 <p>
-此次实现Lisp解释器旨在对Lisp本身的工作原理有更深刻的理解(为下一步创造更简单高效的
+   此次实现Lisp解释器旨在对Lisp本身的工作原理有更深刻的理解(为下一步创造更简单高效的
 类Lisp语言做铺垫)，虽然说不同的Lisp实现本身有可能差别特别大，但是只要实现了语言标准
 (<a href="http://kanaka.github.io/mal/process/cheatsheet.html">这个cheatsheet上是这个系列列出来的基本语言特征</a>),就可以叫它Lisp解释器.大家在学习的同时
 也可以对这类函数式语言(实际上Lisp支持多范式)的工作过程有一定了解.
@@ -95,7 +95,7 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 <h3 id="org-thief">代码说明</h3>
 <div class="outline-text-3" id="text-org-thief">
 <p>
-我实现的代码会放在<a href="https://github.com/thiefuniverse/ThiefLisp">github</a>上. 按照实现的步骤,代码会有step0-stepA多个版本,大家查看时可
+   我实现的代码会放在<a href="https://github.com/thiefuniverse/ThiefLisp">github</a>上. 按照实现的步骤,代码会有step0-stepA多个版本,大家查看时可
 直接git checkout到对应的step去．建议大家在阅读的同时可以自己重新实现一个，这样体会更深，
 也可以作为一个不错的C++项目来练手.感兴趣的还可以尝试学习Lisp(现在比较流行的有common lisp,
 scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
@@ -110,23 +110,23 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 <h3 id="org-thief">0.0: 构造基本循环</h3>
 <div class="outline-text-3" id="text-org-thief">
 <p>
-这一部其实很简单，就是构造一个循环，输入一条语句后eval一下打印出来(当前只是打印，不作实际的
+   这一部其实很简单，就是构造一个循环，输入一条语句后eval一下打印出来(当前只是打印，不作实际的
 计算处理).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #0097A7;">void</span> <span style="color: #558b2f;">ThiefLisp</span>::<span style="color: #0097A7;">run</span>() {
+<pre class="src src-C++">void ThiefLisp::run() {
     initLisp();
-    <span style="color: #00796b;">while</span>(lispContinue)
+    while(lispContinue)
     {
-    <span style="color: #607d8b; font-style: italic;">// </span><span style="color: #607d8b; font-style: italic;">ThiefLisp&#36816;&#34892;&#21518;&#35835;&#21462;&#19968;&#27425;&#36755;&#20837;&#30340;&#25351;&#20196;&#24182;&#27714;&#20540;&#25171;&#21360;&#65292;&#21363;&#22522;&#26412;&#30340;REPL</span>
-        <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #EF6C00;">readResult</span>=reader.readOnce(inputInfo);
-        <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #EF6C00;">evalResult</span>=evaler.eval(readResult);
-        printer.print(evalResult);
-        <span style="color: #00796b;">if</span>(evalResult==quitStr)
-        {
-            lispContinue=<span style="color: #558b2f;">false</span>;
-        }
+    // ThiefLisp运行后读取一次输入的指令并求值打印，即基本的REPL
+	std::string readResult=reader.readOnce(inputInfo);
+	std::string evalResult=evaler.eval(readResult);
+	printer.print(evalResult);
+	if(evalResult==quitStr)
+	{
+	    lispContinue=false;
+	}
     }
 }
 </pre>
@@ -142,13 +142,13 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 </p>
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #558b2f;">ThiefLisp_Reader</span>::<span style="color: #0097A7;">readOnce</span>(<span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span>&amp; <span style="color: #EF6C00;">inputInfo</span>) {
-    <span style="color: #00796b;">const</span> <span style="color: #0097A7;">char</span>* <span style="color: #EF6C00;">inputIn</span>=inputInfo.c_str();
-    <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #0097A7;">readResult</span>(<span style="color: #0097A7;">readline</span>(<span style="color: #EF6C00;">inputIn</span>));
-    <span style="color: #607d8b; font-style: italic;">//</span><span style="color: #607d8b; font-style: italic;">&#35835;&#21462;&#25351;&#20196;&#30340;&#21516;&#26102;&#28155;&#21152;&#21040;&#21382;&#21490;&#20013;&#24182;&#20889;&#20837;&#21382;&#21490;&#35760;&#24405;&#25991;&#20214;</span>
+<pre class="src src-C++">std::string ThiefLisp_Reader::readOnce(std::string&amp; inputInfo) {
+    const char* inputIn=inputInfo.c_str();
+    std::string readResult(readline(inputIn));
+    //读取指令的同时添加到历史中并写入历史记录文件
     add_history(readResult.c_str());
     append_history(1,historyFileName.c_str());
-    <span style="color: #00796b;">return</span> readResult;
+    return readResult;
 }
 </pre>
 </div>
@@ -179,17 +179,7 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 <!-- duoshuo comment box end -->
 
 <!-- duoshuo comment js code start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"thiefuniverse"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+<script id="dsq-count-scr" src="//thiefuniverse.disqus.com/count.js" async></script>
 <!-- duoshuo comment js code end -->
 
   </section>

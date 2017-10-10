@@ -44,7 +44,7 @@ hello world in lua:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #B71C1C;">print</span>(<span style="color: #689f38;">'hello thief'</span>)
+<pre class="src src-lua">print('hello thief')
 </pre>
 </div>
 
@@ -53,7 +53,7 @@ funciton dofile:
 </p>
 
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #B71C1C;">dofile</span>(<span style="color: #689f38;">"*.lua"</span>)   <span style="color: #607d8b; font-style: italic;">--</span><span style="color: #607d8b; font-style: italic;">&#31435;&#21363;&#25191;&#34892;&#26576;&#19968;&#25991;&#20214;&#20195;&#30721;</span>
+<pre class="src src-lua">dofile("*.lua")   --立即执行某一文件代码
 </pre>
 </div>
 </div>
@@ -67,7 +67,7 @@ funciton dofile:
 <h3 id="org-thief">comment in line</h3>
 <div class="outline-text-3" id="text-org-thief">
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #607d8b; font-style: italic;">-- </span><span style="color: #607d8b; font-style: italic;">I'm a line of comment</span>
+<pre class="src src-lua">-- I'm a line of comment
 </pre>
 </div>
 </div>
@@ -76,10 +76,10 @@ funciton dofile:
 <h3 id="org-thief">comment in multiple lines</h3>
 <div class="outline-text-3" id="text-org-thief">
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #607d8b; font-style: italic;">-- </span><span style="color: #607d8b; font-style: italic;">[[</span>
+<pre class="src src-lua">-- [[
 these lines will be commented.
 lalalalalala.......
-<span style="color: #607d8b; font-style: italic;">-- </span><span style="color: #607d8b; font-style: italic;">]]</span>
+-- ]]
 </pre>
 </div>
 </div>
@@ -88,9 +88,9 @@ lalalalalala.......
 <h3 id="org-thief">activate a comment</h3>
 <div class="outline-text-3" id="text-org-thief">
 <div class="org-src-container">
-<pre class="src src-lua"><span style="color: #607d8b; font-style: italic;">---</span><span style="color: #607d8b; font-style: italic;">[[</span>
-<span style="color: #B71C1C;">print</span>(<span style="color: #689f38;">"hello I'm not comment anymore"</span>)
-<span style="color: #607d8b; font-style: italic;">---</span><span style="color: #607d8b; font-style: italic;">]]</span>
+<pre class="src src-lua">---[[
+print("hello I'm not comment anymore")
+---]]
 </pre>
 </div>
 </div>
@@ -112,17 +112,7 @@ lalalalalala.......
 <!-- duoshuo comment box end -->
 
 <!-- duoshuo comment js code start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"thiefuniverse"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+<script id="dsq-count-scr" src="//thiefuniverse.disqus.com/count.js" async></script>
 <!-- duoshuo comment js code end -->
 
   </section>

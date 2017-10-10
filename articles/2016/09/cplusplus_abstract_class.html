@@ -57,28 +57,28 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 
 
 <div class="org-src-container">
-<pre class="src src-C++"><span style="color: #FFA000;">#include</span> <span style="color: #689f38;">&lt;iostream&gt;</span>
-  <span style="color: #00796b;">class</span> <span style="color: #0097A7;">Parent</span>
+<pre class="src src-C++">#include &lt;iostream&gt;
+  class Parent
   {
-  <span style="color: #00796b;">public</span>:
-  <span style="color: #00796b;">virtual</span> <span style="color: #0097A7;">void</span> <span style="color: #0097A7;">hello</span>(){
-      <span style="color: #558b2f;">std</span>::cout &lt;&lt; <span style="color: #689f38;">"I'm parent.\n"</span>;
+  public:
+  virtual void hello(){
+      std::cout &lt;&lt; "I'm parent.\n";
   }
   };
 
-  <span style="color: #00796b;">class</span> <span style="color: #0097A7;">child</span>: <span style="color: #00796b;">public</span> <span style="color: #0097A7;">Parent</span>
+  class child: public Parent
   {
-      <span style="color: #00796b;">public</span> :
-      <span style="color: #0097A7;">void</span> <span style="color: #0097A7;">hello</span>()
+      public :
+      void hello()
       {
-          <span style="color: #558b2f;">std</span>::cout &lt;&lt; <span style="color: #689f38;">"I'm child."</span>;
+	  std::cout &lt;&lt; "I'm child.";
       }
   };
-  <span style="color: #0097A7;">int</span> <span style="color: #0097A7;">main</span>()
+  int main()
   {
-      <span style="color: #0097A7;">Parent</span> *<span style="color: #EF6C00;">a</span>=<span style="color: #00796b;">new</span> <span style="color: #0097A7;">child</span>();
+      Parent *a=new child();
       a-&gt;hello();
-      <span style="color: #00796b;">return</span> 0;
+      return 0;
   }
 </pre>
 </div>
@@ -256,17 +256,7 @@ C++中的接口是通过 <b>抽象类</b> 来实现的,抽象类中全是纯虚�
 <!-- duoshuo comment box end -->
 
 <!-- duoshuo comment js code start -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"thiefuniverse"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
+<script id="dsq-count-scr" src="//thiefuniverse.disqus.com/count.js" async></script>
 <!-- duoshuo comment js code end -->
 
   </section>
