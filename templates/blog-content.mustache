@@ -1,89 +1,272 @@
 
+
+
 <div id="outline-container-thief" class="outline-2">
-<h2 id="org-thief">恩，首先～前方高能，大量剧透</h2>
+<h2 id="org-thief">前言</h2>
 <div class="outline-text-2" id="text-org-thief">
-</div><div id="outline-container-thief" class="outline-3">
-<h3 id="org-thief">首先,这个系列有两部～</h3>
-<div class="outline-text-3" id="text-org-thief">
 <p>
-   这个系列有两部，一部叫2001太空漫游，第二部叫2010威震太阳神．恩，第一部总共
-两个半小时左右，可实际有剧情的时间大概只有一个半小时的样子～  :)  (是不是觉得
-很坑...)其他时间多半是背景音乐一放，然后就停不下来，直接就是飞船从这头飞到那头．
-我总觉得是不是导演偷懒了，虽然这配乐听着还是蛮刺激的．这个现象在第二部就好多了，
-恩，第二部一直都有剧情的～
+  最近想补习一下操作系统，了解到有许多可以自己实现操作系统的好方法，比如说有JOS或者清华的ucore系统。其实也不是
+从头开始实现系统了，不过会参与实现操作系统的重要组成部分，了解到和操作系统底层相关的各种底层知识。其间我自己还补习
+了一下汇编方面的知识，看了一本 <a href="http://pacman128.github.io/pcasm/">pcasm book</a>, 了解到关于C++的许多汇编层面的实现原理（有一本 Inside C++ object model
+里面实际上也提到了许多）
+</p>
+</div>
+</div>
+
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">C++ 的函数重载</h2>
+<div class="outline-text-2" id="text-org-thief">
+<p>
+  C语言是不支持函数重载的，而C++可以。关键就在于编译器在编译C++的函数的时候，会把它的参数信息也追加作为标识符。比如说
+编译器在处理这个函数时:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">void f( int x, int y, double z) ;    // =&gt; 汇编的函数label可能为 _f_Fiid
+void f(double x, double y, int z);   // =&gt; 汇编的函数label可能为 _f_Fddi
+</pre>
+</div>
+
+
+<p>
+之所以说汇编的label『可能』为是由于不同的编译器的实现可能是不一样的。易知对于C语言，汇编生成的label都是f,所以会产生编译错误。
+这里给出一个例子:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">// test_overload_fun.cpp
+// for assembly code:   g++ -S test_overload_fun.cpp
+#include &lt;iostream&gt;
+
+ int f(int a, int b, double c){
+     return a+b;
+ }
+
+ int f(double a, double b, int c){
+     return c;
+ }
+ int main (){
+     std::cout&lt;&lt; f(3,4,4.5)&lt;&lt;std::endl;
+     std::cout&lt;&lt; f(4.6, 3.6,5)&lt;&lt;std::endl;
+
+ }
+</pre>
+</div>
+<p>
+使用g++编译得到的汇编代码里可以大致看到两个函数的label名:
+<img src="https://thiefuniverse.github.io/resource/img/assembly_overload.png" alt="assembly_overload.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">C++ 的引用</h2>
+<div class="outline-text-2" id="text-org-thief">
+<p>
+从汇编代码可以明显看出来，引用实际本质上就是指针。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++">#include &lt;iostream&gt;
+
+int byref(int &amp; foo)
+{
+  return foo;
+}
+int byptr(int * foo)
+{
+  return *foo;
+}
+
+int main(int argc, char **argv) {
+  int aFoo = 5; 
+std::cout&lt;&lt; byref(aFoo)&lt;&lt;std::endl;
+
+  std::cout&lt;&lt; byptr(&amp;aFoo)&lt;&lt;std::endl;
+}
+</pre>
+</div>
+
+<p>
+Mac下汇编得到的两个函数代码分别是:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C">__Z5byptrPi:                            ## @_Z5byptrPi
+     .cfi_startproc
+## BB#0:
+     pushq	%rbp
+Lcfi3:
+     .cfi_def_cfa_offset 16
+Lcfi4:
+     .cfi_offset %rbp, -16
+     movq	%rsp, %rbp
+Lcfi5:
+     .cfi_def_cfa_register %rbp
+     movq	%rdi, -8(%rbp)
+     movq	-8(%rbp), %rdi
+     movl	(%rdi), %eax
+     popq	%rbp
+     retq
+     .cfi_endproc
+
+     .globl	_main
+     .p2align	4, 0x90
+</pre>
+</div>
+
+
+
+<div class="org-src-container">
+<pre class="src src-C">__Z5byrefRi:                            ## @_Z5byrefRi
+     .cfi_startproc
+## BB#0:
+     pushq	%rbp
+Lcfi0:
+     .cfi_def_cfa_offset 16
+Lcfi1:
+     .cfi_offset %rbp, -16
+     movq	%rsp, %rbp
+Lcfi2:
+     .cfi_def_cfa_register %rbp
+     movq	%rdi, -8(%rbp)
+     movq	-8(%rbp), %rdi
+     movl	(%rdi), %eax
+     popq	%rbp
+     retq
+     .cfi_endproc
+
+     .globl	__Z5byptrPi
+     .p2align	4, 0x90
+</pre>
+</div>
+
+<p>
+两个函数的汇编代码可以说完全一样。
+</p>
+</div>
+</div>
+
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">C++ 内联函数</h2>
+<div class="outline-text-2" id="text-org-thief">
+<p>
+我们知道C++的内联函数在编译阶段会直接被替换成具体的函数内语句，这一点从汇编代码上也可以明显看出来。
+</p>
+</div>
+</div>
+
+<div id="outline-container-thief" class="outline-2">
+<h2 id="org-thief">C++继承和多态</h2>
+<div class="outline-text-2" id="text-org-thief">
+<p>
+   首先我们要知道，C++的类的成员函数在编译时会默认添加第一个参数，即this指针。这个参数对我们是隐式存在的，
+我们在调用某个对象的成员函数时，实际上把对象自身的地址作为this指针传入了成员函数中。（此处说明的只是C++的
+一种实现方式，或者说是编译器的一种实现方式）
 </p>
 
 <p>
-   再到如今发展到现在的地步，让人震撼！狂躁的猩猩看着黑色立方体，疯狂地敲击着地上
-的骨头，特写让人心惊！这就是人类的原始本质吗～
+    我们知道C++的多态是通过虚函数来实现的, 含有虚函数的类实例就会存在一个虚函数表指针，指向虚函数的集合。
+如果有继承类overwrite某个虚函数，子类的虚函数表会相应地更新。这样的话，即使父类指针指向子类实例，也能通过
+已经实现覆盖更新过的虚函数表准确地调用对应的函数。
 </p>
-</div>
-<div id="outline-container-thief" class="outline-4">
-<h4 id="org-thief">究极的人工智能</h4>
-<div class="outline-text-4" id="text-org-thief">
+
 <p>
-    第一部里这台HAL9000电脑全程表现出令人担忧的智能．据结尾剧情和第二部的解释才
-知道，HAL通过读唇语得知两个宇航员要把他(:))关闭后，觉得有必要杀死所有宇航员，独
-自完成任务．同时他也确实这么做了，其中一个宇航员在太空中换零件时，HAL控制的逃生舱
-伸出了机械手，把宇航员狠狠推了出去．看着寂静的太空中，一个人影独自挣扎，实在很让人
-心惊．另一个宇航员Bowman立刻出来把他的尸体找了回来，只是HAL却关闭了入口，同时也关
-闭了其他三个休眠状态的宇航员的生命维持装置，杀了他们．最终，Bowman关闭了HAL，然而，
-关闭之后发现了其中的秘密，同时，在又一次遇到黑色立方体之后:Bowman 说了一句："My 
-god,it's full of stars"．结尾出现了不同时期的Bowman的画面，他躺在床上，看着床前面的立方体．
+送上一段代码，可以用来测试虚函数表的实际工作过程(测试在ubuntu 16.04下可编译通过并运行).
 </p>
 
+<div class="org-src-container">
+<pre class="src src-C++">#include &lt;iostream&gt;
+using namespace std;
 
-<div class="figure">
-<p><img src="http://ofi8au305.bkt.clouddn.com/stars.png" alt="stars.png" />
-</p>
-</div>
-</div>
-</div>
+class A{
+public:
+    virtual void   m1() {
+	std::cout&lt;&lt; " A: m1()"&lt;&lt;std::endl;
+    }
+    virtual void m2(){
+	std::cout&lt;&lt;" A: m2()"&lt;&lt;std::endl;
+    }
+    int ad;
+};
+
+class B: public A{
+public:
+    virtual void m1() {
+	std::cout&lt;&lt; " B::m1()"&lt;&lt;std::endl;
+    }
+    int bd;
+};
+
+void print_vtable(A *pa){
+    unsigned * p = reinterpret_cast&lt;unsigned*&gt;(pa);
+    void **vt = reinterpret_cast&lt;void **&gt; (p[0]);
+    std::cout&lt;&lt; std::hex&lt;&lt; "vtable address: "&lt;&lt;vt&lt;&lt;std::endl;
+
+    for(int i=0; i&lt; 2; i++){
+	std::cout&lt;&lt; "dword "&lt;&lt;i&lt;&lt;":"&lt;&lt;vt[i]&lt;&lt;std::endl;
+   }
+
+    void (*m1func_pointer)(A*);
+    m1func_pointer = reinterpret_cast&lt;void (*)(A*)&gt; (vt[0]);
+    m1func_pointer(pa);
+
+    void (*m2func_pointer)(A*);
+    m2func_pointer = reinterpret_cast&lt;void (*)(A*)&gt; (vt[1]);
+    m2func_pointer(pa);
+
+}
+
+int main (){
+    A a;
+    B b1, b2;
+    std::cout&lt;&lt; "a:"&lt;&lt;std::endl;
+    print_vtable(&amp;a);
+
+    std::cout&lt;&lt; "b1:"&lt;&lt;std::endl;
+    print_vtable(&amp;b1);
+
+    std::cout&lt;&lt; "b2:"&lt;&lt;std::endl;
+    print_vtable(&amp;b2);
+
+
+
+}
+</pre>
 </div>
 
-<div id="outline-container-thief" class="outline-3">
-<h3 id="org-thief">第二部确实把坑基本填完了，看的很震撼</h3>
-<div class="outline-text-3" id="text-org-thief">
-</div><div id="outline-container-thief" class="outline-4">
-<h4 id="org-thief">苏美联合～再探Discovery号</h4>
-<div class="outline-text-4" id="text-org-thief">
 <p>
-    苏联的飞船造好了，可是怕和九年前的Discovery号发生同样的未知事故，于是想和Discovery
-的头头儿联合，同时还有Discovery的制造者以及HAL的制造者Chandra教授．
+输出为:
 </p>
+
+<div class="org-src-container">
+<pre class="src src-C++">a:
+vtable address: 0x400f88
+dword 0:0x400dc8
+dword 1:0x400df4
+ A: m1()
+ A: m2()
+b1:
+vtable address: 0x400f68
+dword 0:0x400e20
+dword 1:0x400df4
+ B::m1()
+ A: m2()
+b2:
+vtable address: 0x400f68
+dword 0:0x400e20
+dword 1:0x400df4
+ B::m1()
+ A: m2()
+</pre>
 </div>
-</div>
-<div id="outline-container-thief" class="outline-4">
-<h4 id="org-thief">SAL, HAL and Chandra教授</h4>
-<div class="outline-text-4" id="text-org-thief">
+
 <p>
-Chandra教授把自己制造的另一台电脑核心SAL带在了身上，关机之前SAL问她：Will I dream? Chandra教授毫不犹豫地回答说会．当HAL发现Discovery号可能毁灭，不能启动点火信号时，他问教授现在是不是有危险，教授觉得终于瞒不过他，承认了．HAL问如果不点火，他们会怎么样；教授说他们都会死．当大家都屏住呼吸，等待着这台电脑的最终回复时，HAL同意了点火，同时牺牲自己．他的价值已远远不是普通电脑可以比的，俨然是一个敢于牺牲的宇航员了（在我看来）．最后，HAL又问教授:Will I dream? 教授含着泪回答:I don't know. 恩，教授从一开始就把自己的程序当做一个人来看待，有感情，会怀疑，会反抗，甚至接受了命令之后还会撒谎（而撒谎终归是人教的）．觉得很震撼！
+易知继承之后的B类中虚函数表重写了m1的指针。结构示意图如下:
+<img src="https://thiefuniverse.github.io/resource/img/polymorphism.png" alt="polymorphism.png" />
 </p>
 
-
-<div class="figure">
-<p><img src="http://ofi8au305.bkt.clouddn.com/hal.png" alt="hal.png" />
-</p>
-</div>
-</div>
-</div>
-
-<div id="outline-container-thief" class="outline-4">
-<h4 id="org-thief">宇宙主宰</h4>
-<div class="outline-text-4" id="text-org-thief">
 <p>
-飞船开到木星的时候发现了木星附近有一个巨大的黑色立方体．一个探测飞船上去碰了碰就被一道白光毁了．正在这时，之前的Bowman来提醒头头儿迅速离开，这里很快会有一些奇妙的事情发生～(恩，说法有点奇怪～实际上)没多久立方体消失了，头头儿最终说服了苏联飞船，用Discovery号作为发射器加速，然后一起离开．正要离开时，看到木星某处出现了一个黑点，放大后发现，那正是无数的黑色立方体，吞噬星球的同时在迅速增加自身．在木星的爆炸中，电影结束了．地球上以后出现了两个可以看到的太阳．（恩，可能那不是木星，觉得不太合理）最后出现的画面就是，某个星球上，一块原始的沼泽地里，一块黑色立方体笔直地立在地上．．．．．
+欢迎评论区交流~~~   :)
 </p>
-</div>
-</div>
-
-<div id="outline-container-thief" class="outline-4">
-<h4 id="org-thief">最后几句</h4>
-<div class="outline-text-4" id="text-org-thief">
-<p>
-觉得这个黑色立方体可能是高级生命体，也可能是生命的起源这种意思（指引黑猩猩用工具）．恩，人类在生命起源面前，太过渺小了～那个Bowman在星球爆炸之前，还发信息给自己在地球的妻子和母亲，恩，一副奔向新世界的样子，声称自己已经明白了一切．恩，宇宙主宰肯定不会写程序，我猜....最后，HAL我真是太喜欢了～
-</p>
-</div>
-</div>
 </div>
 </div>
