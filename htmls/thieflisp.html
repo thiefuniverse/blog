@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2019-02-26 Tue 23:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ThiefLisp解释器构造-step0</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="thief" />
+<meta name="keywords" content="lisp,interpreter" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2018 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">ThiefLisp解释器构造-step0</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgc9df286">1. 实现一个Lisp解释器</a>
+<ul>
+<li><a href="#orgb5b5d4e">1.1. Introduction</a></li>
+<li><a href="#org8321870">1.2. A Lisp Interpreter</a></li>
+<li><a href="#orgcf23b00">1.3. 代码说明</a></li>
+</ul>
+</li>
+<li><a href="#orgd0a0a6d">2. Step0 &#x2013; 实现基本的REPL结构</a>
+<ul>
+<li><a href="#orgd1caeb2">2.1. 0.0: 构造基本循环</a></li>
+<li><a href="#org015e0f5">2.2. 0.1: 优化解释器基本操作</a></li>
+<li><a href="#orgee05987">2.3. 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</a></li>
+</ul>
+</li>
+<li><a href="#org52b2da6">3. Lisp外部资源:</a>
+<ul>
+<li>
+<ul>
+<li><a href="#orgf02f4d6">3.0.1. What makes lisp macro so special?</a></li>
+<li><a href="#org433d762">3.0.2. Why lisp is superior?</a></li>
+<li><a href="#orgd0bad0b">3.0.3. 黑客与画家</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgc9df286" class="outline-2">
+<h2 id="orgc9df286"><span class="section-number-2">1</span> 实现一个Lisp解释器</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgb5b5d4e" class="outline-3">
+<h3 id="orgb5b5d4e"><span class="section-number-3">1.1</span> Introduction</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+   本系列ThiefLisp使用C++实现,参考了github上这个<a href="https://github.com/kanaka/mal/blob/master/process/guide.md"> mal </a>项目中的实现过程以及cpp实现.
+Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理速度)无法满足需求以及它表面
+上看似让人无法接受的 <b>语法</b> (括号语法)，导致Lisp最终只是退居于人工智能领域等，而不是成为一门像C++
+一样流行的主流语言. Lisp包含许多现代高级语言的特性，如递归，垃圾回收，REPL等．尤其重要的
+是Lisp宏的特性更是给Lisp带来了无限的扩展空间与可能．不像C的那种基本是替换字符串的宏，Lisp
+宏可以无限地拓展其本身的语法．如果你不想用for来表示循环了，你可以自己定义出其他的for循环格式．
+一切写法都可以由你自己重定义(当然， <b>Lisp is a list processor</b>, 它需要是list形式).
+</p>
+
+
+<div class="figure">
+<p><img src="../../../resource/img/lisplogo.png" alt="lisplogo.png" />
+</p>
+</div>
+
+<p>
+这是一段elisp(emacs lisp)的代码:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #e91e63;">(</span><span style="color: #00796b;">defun</span> <span style="color: #0097A7;">rename-this-file-and-buffer</span> <span style="color: #1565C0;">(</span>new-name<span style="color: #1565C0;">)</span>
+  <span style="color: #673ab7;">"Rename both current buffer and file it's visiting to New Name"</span>
+  <span style="color: #1565C0;">(</span><span style="color: #00796b;">interactive</span> <span style="color: #689f38;">"sNew name : "</span><span style="color: #1565C0;">)</span>
+  <span style="color: #1565C0;">(</span><span style="color: #00796b;">let</span> <span style="color: #EF6C00;">(</span><span style="color: #B388FF;">(</span>name <span style="color: #76ff03;">(</span>buffer-name<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+     <span style="color: #B388FF;">(</span>filename <span style="color: #76ff03;">(</span>buffer-file-name<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span>
+    <span style="color: #EF6C00;">(</span><span style="color: #00796b;">unless</span> filename
+   <span style="color: #B388FF;">(</span><span style="color: #B71C1C; font-weight: bold;">error</span> <span style="color: #689f38;">"Buffer '%s' is not visiting a file !"</span> name<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span>
+    <span style="color: #EF6C00;">(</span><span style="color: #00796b;">progn</span>
+   <span style="color: #B388FF;">(</span><span style="color: #00796b;">when</span> <span style="color: #76ff03;">(</span>file-exists-p filename<span style="color: #76ff03;">)</span>
+     <span style="color: #76ff03;">(</span>rename-file filename new-name 1<span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>
+   <span style="color: #B388FF;">(</span>set-visited-file-name new-name<span style="color: #B388FF;">)</span>
+   <span style="color: #B388FF;">(</span>rename-buffer new-name<span style="color: #B388FF;">)</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8321870" class="outline-3">
+<h3 id="org8321870"><span class="section-number-3">1.2</span> A Lisp Interpreter</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+   此次实现Lisp解释器旨在对Lisp本身的工作原理有更深刻的理解(为下一步创造更简单高效的
+类Lisp语言做铺垫)，虽然说不同的Lisp实现本身有可能差别特别大，但是只要实现了语言标准
+(<a href="http://kanaka.github.io/mal/process/cheatsheet.html">这个cheatsheet上是这个系列列出来的基本语言特征</a>),就可以叫它Lisp解释器.大家在学习的同时
+也可以对这类函数式语言(实际上Lisp支持多范式)的工作过程有一定了解.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcf23b00" class="outline-3">
+<h3 id="orgcf23b00"><span class="section-number-3">1.3</span> 代码说明</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+   我实现的代码会放在<a href="https://github.com/thiefuniverse/ThiefLisp">github</a>上. 按照实现的步骤,代码会有step0-stepA多个版本,大家查看时可
+直接git checkout到对应的step去．建议大家在阅读的同时可以自己重新实现一个，这样体会更深，
+也可以作为一个不错的C++项目来练手.感兴趣的还可以尝试学习Lisp(现在比较流行的有common lisp,
+scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd0a0a6d" class="outline-2">
+<h2 id="orgd0a0a6d"><span class="section-number-2">2</span> Step0 &#x2013; 实现基本的REPL结构</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd1caeb2" class="outline-3">
+<h3 id="orgd1caeb2"><span class="section-number-3">2.1</span> 0.0: 构造基本循环</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+   这一部其实很简单，就是构造一个循环，输入一条语句后eval一下打印出来(当前只是打印，不作实际的
+计算处理).
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #0097A7;">void</span> <span style="color: #558b2f;">ThiefLisp</span>::<span style="color: #0097A7;">run</span>() {
+    initLisp();
+    <span style="color: #00796b;">while</span>(lispContinue)
+    {
+    <span style="color: #607d8b; font-style: italic;">// </span><span style="color: #607d8b; font-style: italic;">ThiefLisp&#36816;&#34892;&#21518;&#35835;&#21462;&#19968;&#27425;&#36755;&#20837;&#30340;&#25351;&#20196;&#24182;&#27714;&#20540;&#25171;&#21360;&#65292;&#21363;&#22522;&#26412;&#30340;REPL</span>
+        <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #EF6C00;">readResult</span>=reader.readOnce(inputInfo);
+        <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #EF6C00;">evalResult</span>=evaler.eval(readResult);
+        printer.print(evalResult);
+        <span style="color: #00796b;">if</span>(evalResult==quitStr)
+        {
+            lispContinue=<span style="color: #558b2f;">false</span>;
+        }
+    }
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org015e0f5" class="outline-3">
+<h3 id="org015e0f5"><span class="section-number-3">2.2</span> 0.1: 优化解释器基本操作</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+利用的GNU的<a href="https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">readline</a> 库，实现对解释器输入指令的历史记录功能.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-C++"><span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #558b2f;">ThiefLisp_Reader</span>::<span style="color: #0097A7;">readOnce</span>(<span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span>&amp; <span style="color: #EF6C00;">inputInfo</span>) {
+    <span style="color: #00796b;">const</span> <span style="color: #0097A7;">char</span>* <span style="color: #EF6C00;">inputIn</span>=inputInfo.c_str();
+    <span style="color: #558b2f;">std</span>::<span style="color: #0097A7;">string</span> <span style="color: #EF6C00;">readResult</span>(readline(inputIn));
+    <span style="color: #607d8b; font-style: italic;">//</span><span style="color: #607d8b; font-style: italic;">&#35835;&#21462;&#25351;&#20196;&#30340;&#21516;&#26102;&#28155;&#21152;&#21040;&#21382;&#21490;&#20013;&#24182;&#20889;&#20837;&#21382;&#21490;&#35760;&#24405;&#25991;&#20214;</span>
+    add_history(readResult.c_str());
+    append_history(1,historyFileName.c_str());
+    <span style="color: #00796b;">return</span> readResult;
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgee05987" class="outline-3">
+<h3 id="orgee05987"><span class="section-number-3">2.3</span> 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</h3>
+</div>
+</div>
+
+<div id="outline-container-org52b2da6" class="outline-2">
+<h2 id="org52b2da6"><span class="section-number-2">3</span> Lisp外部资源:</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgf02f4d6" class="outline-4">
+<h4 id="orgf02f4d6"><span class="section-number-4">3.0.1</span> <a href="http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">What makes lisp macro so special?</a></h4>
+</div>
+<div id="outline-container-org433d762" class="outline-4">
+<h4 id="org433d762"><span class="section-number-4">3.0.2</span> <a href="http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html">Why lisp is superior</a>?</h4>
+</div>
+<div id="outline-container-orgd0bad0b" class="outline-4">
+<h4 id="orgd0bad0b"><span class="section-number-4">3.0.3</span> 黑客与画家</h4>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-03-11</p>
+<p class="author">Author: thief</p>
+<p class="date">Created: 2019-02-26 Tue 23:50</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
