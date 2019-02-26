@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-02-27 Wed 00:38 -->
+<!-- 2019-02-27 Wed 00:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>EveryDay Linux Hacking (1)</title>
@@ -236,26 +236,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org9d0fae4">1. How can I replace a newline?</a>
+<li><a href="#org2369219">1. How can I replace a newline?</a>
 <ul>
-<li><a href="#orgd3f4ac2">1.1. sed</a></li>
-<li><a href="#org615edd1">1.2. perl</a></li>
-<li><a href="#org1b51a07">1.3. bash</a></li>
-<li><a href="#org50a05a1">1.4. tr</a></li>
-<li><a href="#org8bb5965">1.5. paste</a></li>
+<li><a href="#org8f6b951">1.1. sed</a></li>
+<li><a href="#org09189c4">1.2. perl</a></li>
+<li><a href="#org3475f99">1.3. bash</a></li>
+<li><a href="#org54c2e98">1.4. tr</a></li>
+<li><a href="#orge50a965">1.5. paste</a></li>
 </ul>
 </li>
-<li><a href="#org89f2ae0">2. How to show top five CPU consuming process with 'ps'</a>
+<li><a href="#org473fbe2">2. How to show top five CPU consuming process with 'ps'</a>
 <ul>
-<li><a href="#org4446c9d">2.1. ps</a></li>
+<li><a href="#org7daaae5">2.1. ps</a></li>
 </ul>
 </li>
-<li><a href="#orge0d9785">3. apropos 查询命令关键字</a>
+<li><a href="#org9bf64f6">3. apropos 查询命令关键字</a>
 <ul>
-<li><a href="#org63f2a51">3.1. -r 正则匹配 (默认行为)</a></li>
-<li><a href="#org800e14b">3.2. -e 精确匹配关键字</a></li>
-<li><a href="#org3254ef6">3.3. -a 同时匹配多个关键字</a></li>
-<li><a href="#org813a674">3.4. -r 正则匹配</a></li>
+<li><a href="#org2fd6e7d">3.1. -r 正则匹配 (默认行为)</a></li>
+<li><a href="#orgcb68334">3.2. -e 精确匹配关键字</a></li>
+<li><a href="#orgf29c2ae">3.3. -a 同时匹配多个关键字</a></li>
+<li><a href="#orgba05a85">3.4. -r 正则匹配</a></li>
 </ul>
 </li>
 </ul>
@@ -263,12 +263,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org9d0fae4" class="outline-2">
-<h2 id="org9d0fae4"><span class="section-number-2">1</span> How can I replace a newline?</h2>
+<div id="outline-container-org2369219" class="outline-2">
+<h2 id="org2369219"><span class="section-number-2">1</span> How can I replace a newline?</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgd3f4ac2" class="outline-3">
-<h3 id="orgd3f4ac2"><span class="section-number-3">1.1</span> sed</h3>
+<div id="outline-container-org8f6b951" class="outline-3">
+<h3 id="org8f6b951"><span class="section-number-3">1.1</span> sed</h3>
 <div class="outline-text-3" id="text-1-1">
 <div class="org-src-container">
 <pre class="src src-shell">sed <span style="color: #689f38;">':a;N;$!ba;s/\n/ /g'</span> file
@@ -283,8 +283,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org615edd1" class="outline-3">
-<h3 id="org615edd1"><span class="section-number-3">1.2</span> perl</h3>
+<div id="outline-container-org09189c4" class="outline-3">
+<h3 id="org09189c4"><span class="section-number-3">1.2</span> perl</h3>
 <div class="outline-text-3" id="text-1-2">
 <div class="org-src-container">
 <pre class="src src-shell">perl -p -e <span style="color: #689f38;">'s/\n/ /'</span> file
@@ -294,8 +294,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org1b51a07" class="outline-3">
-<h3 id="org1b51a07"><span class="section-number-3">1.3</span> bash</h3>
+<div id="outline-container-org3475f99" class="outline-3">
+<h3 id="org3475f99"><span class="section-number-3">1.3</span> bash</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #00796b;">while </span><span style="color: #B71C1C;">read</span> line; <span style="color: #00796b;">do</span> printf <span style="color: #689f38;">"%s"</span> <span style="color: #689f38;">"$line "</span>; <span style="color: #00796b;">done</span> &lt; file
@@ -305,8 +305,8 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org50a05a1" class="outline-3">
-<h3 id="org50a05a1"><span class="section-number-3">1.4</span> tr</h3>
+<div id="outline-container-org54c2e98" class="outline-3">
+<h3 id="org54c2e98"><span class="section-number-3">1.4</span> tr</h3>
 <div class="outline-text-3" id="text-1-4">
 <div class="org-src-container">
 <pre class="src src-shell">tr <span style="color: #689f38;">'\n'</span> <span style="color: #689f38;">' '</span> &lt; file
@@ -319,8 +319,8 @@ tr -d <span style="color: #689f38;">'\n'</span> &lt; file
 </div>
 
 
-<div id="outline-container-org8bb5965" class="outline-3">
-<h3 id="org8bb5965"><span class="section-number-3">1.5</span> paste</h3>
+<div id="outline-container-orge50a965" class="outline-3">
+<h3 id="orge50a965"><span class="section-number-3">1.5</span> paste</h3>
 <div class="outline-text-3" id="text-1-5">
 <div class="org-src-container">
 <pre class="src src-shell">paste -s -d <span style="color: #689f38;">' '</span> file
@@ -333,12 +333,12 @@ tr -d <span style="color: #689f38;">'\n'</span> &lt; file
 </div>
 </div>
 
-<div id="outline-container-org89f2ae0" class="outline-2">
-<h2 id="org89f2ae0"><span class="section-number-2">2</span> How to show top five CPU consuming process with 'ps'</h2>
+<div id="outline-container-org473fbe2" class="outline-2">
+<h2 id="org473fbe2"><span class="section-number-2">2</span> How to show top five CPU consuming process with 'ps'</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org4446c9d" class="outline-3">
-<h3 id="org4446c9d"><span class="section-number-3">2.1</span> ps</h3>
+<div id="outline-container-org7daaae5" class="outline-3">
+<h3 id="org7daaae5"><span class="section-number-3">2.1</span> ps</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sh">
@@ -352,15 +352,15 @@ ps  -eo pid,pcpu| sort -nrk 2,2 | head -n 5
 </div>
 </div>
 
-<div id="outline-container-orge0d9785" class="outline-2">
-<h2 id="orge0d9785"><span class="section-number-2">3</span> apropos 查询命令关键字</h2>
+<div id="outline-container-org9bf64f6" class="outline-2">
+<h2 id="org9bf64f6"><span class="section-number-2">3</span> apropos 查询命令关键字</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org63f2a51" class="outline-3">
-<h3 id="org63f2a51"><span class="section-number-3">3.1</span> -r 正则匹配 (默认行为)</h3>
+<div id="outline-container-org2fd6e7d" class="outline-3">
+<h3 id="org2fd6e7d"><span class="section-number-3">3.1</span> -r 正则匹配 (默认行为)</h3>
 </div>
-<div id="outline-container-org800e14b" class="outline-3">
-<h3 id="org800e14b"><span class="section-number-3">3.2</span> -e 精确匹配关键字</h3>
+<div id="outline-container-orgcb68334" class="outline-3">
+<h3 id="orgcb68334"><span class="section-number-3">3.2</span> -e 精确匹配关键字</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #607d8b; font-style: italic;"># </span><span style="color: #607d8b; font-style: italic;">I have alias apropos as ap</span>
@@ -378,8 +378,8 @@ ap cscl -e
 </div>
 </div>
 
-<div id="outline-container-org3254ef6" class="outline-3">
-<h3 id="org3254ef6"><span class="section-number-3">3.3</span> -a 同时匹配多个关键字</h3>
+<div id="outline-container-orgf29c2ae" class="outline-3">
+<h3 id="orgf29c2ae"><span class="section-number-3">3.3</span> -a 同时匹配多个关键字</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-sh">ap -a line editor
@@ -404,16 +404,16 @@ ap cscl -e
 </div>
 </div>
 
-<div id="outline-container-org813a674" class="outline-3">
-<h3 id="org813a674"><span class="section-number-3">3.4</span> -r 正则匹配</h3>
+<div id="outline-container-orgba05a85" class="outline-3">
+<h3 id="orgba05a85"><span class="section-number-3">3.4</span> -r 正则匹配</h3>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-04-18</p>
 <p class="author">Author: thief</p>
-<p class="date">Created: 2019-02-27 Wed 00:38</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2019-02-27 Wed 00:40</p>
+<p class="validation"></p>
 </div>
 </body>
 </html>

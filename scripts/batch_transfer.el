@@ -54,6 +54,7 @@ will return \"this is title\" if OPTION is \"TITLE\""
 
 (defun render-one (one_org)
   "render one org file."
+  (setq org-html-validation-link nil)
   (let ((date-title '()))
     (save-excursion
       (with-temp-buffer
