@@ -8,7 +8,7 @@
 #+LANGUAGE:    en
 #+OPTIONS:     toc:4
 #+DESCRIPTION: a high performance screenshooter
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheet/org.css">
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
 
 
 * 方便地截自己选择的 *区域图，窗口图，全局图*

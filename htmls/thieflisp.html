@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-02-27 Wed 00:31 -->
+<!-- 2019-02-27 Wed 00:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ThiefLisp解释器构造-step0</title>
@@ -236,27 +236,27 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org74b6803">1. 实现一个Lisp解释器</a>
+<li><a href="#org523ebe0">1. 实现一个Lisp解释器</a>
 <ul>
-<li><a href="#orga82cdd2">1.1. Introduction</a></li>
-<li><a href="#org4fa22af">1.2. A Lisp Interpreter</a></li>
-<li><a href="#org7fc6467">1.3. 代码说明</a></li>
+<li><a href="#orgf7cbc98">1.1. Introduction</a></li>
+<li><a href="#orge7b3880">1.2. A Lisp Interpreter</a></li>
+<li><a href="#org76c1fee">1.3. 代码说明</a></li>
 </ul>
 </li>
-<li><a href="#orgb27d244">2. Step0 &#x2013; 实现基本的REPL结构</a>
+<li><a href="#org4873f74">2. Step0 &#x2013; 实现基本的REPL结构</a>
 <ul>
-<li><a href="#orgbc19cb0">2.1. 0.0: 构造基本循环</a></li>
-<li><a href="#org3a74121">2.2. 0.1: 优化解释器基本操作</a></li>
-<li><a href="#orgd60309c">2.3. 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</a></li>
+<li><a href="#org2adfe84">2.1. 0.0: 构造基本循环</a></li>
+<li><a href="#orgb74feda">2.2. 0.1: 优化解释器基本操作</a></li>
+<li><a href="#orgf78dc02">2.3. 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</a></li>
 </ul>
 </li>
-<li><a href="#orgb41c6d9">3. Lisp外部资源:</a>
+<li><a href="#orgb84dbbb">3. Lisp外部资源:</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orge7042e4">3.0.1. What makes lisp macro so special?</a></li>
-<li><a href="#org710b015">3.0.2. Why lisp is superior?</a></li>
-<li><a href="#org79706f6">3.0.3. 黑客与画家</a></li>
+<li><a href="#orgb537646">3.0.1. What makes lisp macro so special?</a></li>
+<li><a href="#org5ac9af5">3.0.2. Why lisp is superior?</a></li>
+<li><a href="#orgf0f9140">3.0.3. 黑客与画家</a></li>
 </ul>
 </li>
 </ul>
@@ -266,12 +266,12 @@ for the JavaScript code in this tag.
 </div>
 
 
-<div id="outline-container-org74b6803" class="outline-2">
-<h2 id="org74b6803"><span class="section-number-2">1</span> 实现一个Lisp解释器</h2>
+<div id="outline-container-org523ebe0" class="outline-2">
+<h2 id="org523ebe0"><span class="section-number-2">1</span> 实现一个Lisp解释器</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga82cdd2" class="outline-3">
-<h3 id="orga82cdd2"><span class="section-number-3">1.1</span> Introduction</h3>
+<div id="outline-container-orgf7cbc98" class="outline-3">
+<h3 id="orgf7cbc98"><span class="section-number-3">1.1</span> Introduction</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
    本系列ThiefLisp使用C++实现,参考了github上这个<a href="https://github.com/kanaka/mal/blob/master/process/guide.md"> mal </a>项目中的实现过程以及cpp实现.
@@ -311,8 +311,8 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 </div>
 </div>
 
-<div id="outline-container-org4fa22af" class="outline-3">
-<h3 id="org4fa22af"><span class="section-number-3">1.2</span> A Lisp Interpreter</h3>
+<div id="outline-container-orge7b3880" class="outline-3">
+<h3 id="orge7b3880"><span class="section-number-3">1.2</span> A Lisp Interpreter</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
    此次实现Lisp解释器旨在对Lisp本身的工作原理有更深刻的理解(为下一步创造更简单高效的
@@ -322,8 +322,8 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 </p>
 </div>
 </div>
-<div id="outline-container-org7fc6467" class="outline-3">
-<h3 id="org7fc6467"><span class="section-number-3">1.3</span> 代码说明</h3>
+<div id="outline-container-org76c1fee" class="outline-3">
+<h3 id="org76c1fee"><span class="section-number-3">1.3</span> 代码说明</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
    我实现的代码会放在<a href="https://github.com/thiefuniverse/ThiefLisp">github</a>上. 按照实现的步骤,代码会有step0-stepA多个版本,大家查看时可
@@ -334,12 +334,12 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 </div>
 </div>
 </div>
-<div id="outline-container-orgb27d244" class="outline-2">
-<h2 id="orgb27d244"><span class="section-number-2">2</span> Step0 &#x2013; 实现基本的REPL结构</h2>
+<div id="outline-container-org4873f74" class="outline-2">
+<h2 id="org4873f74"><span class="section-number-2">2</span> Step0 &#x2013; 实现基本的REPL结构</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbc19cb0" class="outline-3">
-<h3 id="orgbc19cb0"><span class="section-number-3">2.1</span> 0.0: 构造基本循环</h3>
+<div id="outline-container-org2adfe84" class="outline-3">
+<h3 id="org2adfe84"><span class="section-number-3">2.1</span> 0.0: 构造基本循环</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
    这一部其实很简单，就是构造一个循环，输入一条语句后eval一下打印出来(当前只是打印，不作实际的
@@ -366,8 +366,8 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 </div>
 </div>
 
-<div id="outline-container-org3a74121" class="outline-3">
-<h3 id="org3a74121"><span class="section-number-3">2.2</span> 0.1: 优化解释器基本操作</h3>
+<div id="outline-container-orgb74feda" class="outline-3">
+<h3 id="orgb74feda"><span class="section-number-3">2.2</span> 0.1: 优化解释器基本操作</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 利用的GNU的<a href="https://cnswww.cns.cwru.edu/php/chet/readline/rltop.html">readline</a> 库，实现对解释器输入指令的历史记录功能.
@@ -387,30 +387,30 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 </div>
 </div>
 
-<div id="outline-container-orgd60309c" class="outline-3">
-<h3 id="orgd60309c"><span class="section-number-3">2.3</span> 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</h3>
+<div id="outline-container-orgf78dc02" class="outline-3">
+<h3 id="orgf78dc02"><span class="section-number-3">2.3</span> 0.2: 具体实现见step0代码，现在已经开启了Lisp解释器的大门~</h3>
 </div>
 </div>
 
-<div id="outline-container-orgb41c6d9" class="outline-2">
-<h2 id="orgb41c6d9"><span class="section-number-2">3</span> Lisp外部资源:</h2>
+<div id="outline-container-orgb84dbbb" class="outline-2">
+<h2 id="orgb84dbbb"><span class="section-number-2">3</span> Lisp外部资源:</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orge7042e4" class="outline-4">
-<h4 id="orge7042e4"><span class="section-number-4">3.0.1</span> <a href="http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">What makes lisp macro so special?</a></h4>
+<div id="outline-container-orgb537646" class="outline-4">
+<h4 id="orgb537646"><span class="section-number-4">3.0.1</span> <a href="http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special">What makes lisp macro so special?</a></h4>
 </div>
-<div id="outline-container-org710b015" class="outline-4">
-<h4 id="org710b015"><span class="section-number-4">3.0.2</span> <a href="http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html">Why lisp is superior</a>?</h4>
+<div id="outline-container-org5ac9af5" class="outline-4">
+<h4 id="org5ac9af5"><span class="section-number-4">3.0.2</span> <a href="http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html">Why lisp is superior</a>?</h4>
 </div>
-<div id="outline-container-org79706f6" class="outline-4">
-<h4 id="org79706f6"><span class="section-number-4">3.0.3</span> 黑客与画家</h4>
+<div id="outline-container-orgf0f9140" class="outline-4">
+<h4 id="orgf0f9140"><span class="section-number-4">3.0.3</span> 黑客与画家</h4>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-03-11</p>
 <p class="author">Author: thief</p>
-<p class="date">Created: 2019-02-27 Wed 00:31</p>
+<p class="date">Created: 2019-02-27 Wed 00:33</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
