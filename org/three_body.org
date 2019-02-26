@@ -8,7 +8,7 @@
 #+LANGUAGE:    en
 #+OPTIONS:     toc:4
 #+DESCRIPTION: Another view for this world, this universe... real or not real
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheet/org.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheet/org.css">
 
 * 恩，首先，前方高能，大量剧透，不喜关链接
   恩，有的内容记得并不是很清楚了，如有错误欢迎指正交流．

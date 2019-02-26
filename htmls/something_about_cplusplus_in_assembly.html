@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-02-26 Tue 23:50 -->
+<!-- 2019-02-27 Wed 00:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Something about C++ in Assembly</title>
@@ -236,18 +236,18 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org20f34e6">1. 前言</a></li>
-<li><a href="#orge2cde7f">2. C++ 的函数重载</a></li>
-<li><a href="#orgfe7e524">3. C++ 的引用</a></li>
-<li><a href="#org106ff88">4. C++ 内联函数</a></li>
-<li><a href="#org14c91e0">5. C++继承和多态</a></li>
+<li><a href="#org845a681">1. 前言</a></li>
+<li><a href="#org5159b41">2. C++ 的函数重载</a></li>
+<li><a href="#orgfdedfcb">3. C++ 的引用</a></li>
+<li><a href="#orge5336f8">4. C++ 内联函数</a></li>
+<li><a href="#orgb867e3c">5. C++继承和多态</a></li>
 </ul>
 </div>
 </div>
 
 
-<div id="outline-container-org20f34e6" class="outline-2">
-<h2 id="org20f34e6"><span class="section-number-2">1</span> 前言</h2>
+<div id="outline-container-org845a681" class="outline-2">
+<h2 id="org845a681"><span class="section-number-2">1</span> 前言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
   最近想补习一下操作系统，了解到有许多可以自己实现操作系统的好方法，比如说有JOS或者清华的ucore系统。其实也不是
@@ -258,8 +258,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orge2cde7f" class="outline-2">
-<h2 id="orge2cde7f"><span class="section-number-2">2</span> C++ 的函数重载</h2>
+<div id="outline-container-org5159b41" class="outline-2">
+<h2 id="org5159b41"><span class="section-number-2">2</span> C++ 的函数重载</h2>
 <div class="outline-text-2" id="text-2">
 <p>
   C语言是不支持函数重载的，而C++可以。关键就在于编译器在编译C++的函数的时候，会把它的参数信息也追加作为标识符。比如说
@@ -303,8 +303,8 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-orgfe7e524" class="outline-2">
-<h2 id="orgfe7e524"><span class="section-number-2">3</span> C++ 的引用</h2>
+<div id="outline-container-orgfdedfcb" class="outline-2">
+<h2 id="orgfdedfcb"><span class="section-number-2">3</span> C++ 的引用</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 从汇编代码可以明显看出来，引用实际本质上就是指针。
@@ -391,8 +391,8 @@ Lcfi2:
 </div>
 </div>
 
-<div id="outline-container-org106ff88" class="outline-2">
-<h2 id="org106ff88"><span class="section-number-2">4</span> C++ 内联函数</h2>
+<div id="outline-container-orge5336f8" class="outline-2">
+<h2 id="orge5336f8"><span class="section-number-2">4</span> C++ 内联函数</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 我们知道C++的内联函数在编译阶段会直接被替换成具体的函数内语句，这一点从汇编代码上也可以明显看出来。
@@ -400,8 +400,8 @@ Lcfi2:
 </div>
 </div>
 
-<div id="outline-container-org14c91e0" class="outline-2">
-<h2 id="org14c91e0"><span class="section-number-2">5</span> C++继承和多态</h2>
+<div id="outline-container-orgb867e3c" class="outline-2">
+<h2 id="orgb867e3c"><span class="section-number-2">5</span> C++继承和多态</h2>
 <div class="outline-text-2" id="text-5">
 <p>
    首先我们要知道，C++的类的成员函数在编译时会默认添加第一个参数，即this指针。这个参数对我们是隐式存在的，
@@ -519,7 +519,7 @@ dword 1:0x400df4
 <div id="postamble" class="status">
 <p class="date">Date: 2017-10-09</p>
 <p class="author">Author: thief</p>
-<p class="date">Created: 2019-02-26 Tue 23:50</p>
+<p class="date">Created: 2019-02-27 Wed 00:31</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

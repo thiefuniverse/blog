@@ -8,6 +8,7 @@
 #+LANGUAGE:    en
 #+OPTIONS:     toc:4
 #+DESCRIPTION: process of android root(nexus5x)
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
 
 * root的好处
  *root* 之后你才是手机真正的主人～，本来不能删的预装软件现在可以删了（不过我一般不删，怕真的把系统给弄崩了). 可以更高效地使用像greenify，icebox(必须root)这类需要root权限的软件.当然,root了之后还有其他各种与以往不同的玩法．

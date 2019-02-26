@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2019-02-26 Tue 23:50 -->
+<!-- 2019-02-27 Wed 00:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lex &#x2013; A Parser Generator</title>
@@ -238,17 +238,17 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd296ae8">1. A Parser based on Regular Expression</a>
+<li><a href="#org76e55b3">1. A Parser based on Regular Expression</a>
 <ul>
-<li><a href="#orgf7dd2fd">1.1. 基本原理</a></li>
-<li><a href="#org8bd9ee1">1.2. Lex 程序的基本书写</a>
+<li><a href="#org70c7c54">1.1. 基本原理</a></li>
+<li><a href="#org5733c80">1.2. Lex 程序的基本书写</a>
 <ul>
-<li><a href="#org7575ba8">1.2.1. 三个组成部分</a></li>
-<li><a href="#org16ac233">1.2.2. Notice</a></li>
+<li><a href="#orgd04a597">1.2.1. 三个组成部分</a></li>
+<li><a href="#org330b7ea">1.2.2. Notice</a></li>
 </ul>
 </li>
-<li><a href="#orgf3df97b">1.3. lex的正则表达式</a></li>
-<li><a href="#org7ea9bf4">1.4. 外部资源</a></li>
+<li><a href="#org5f9a06a">1.3. lex的正则表达式</a></li>
+<li><a href="#org39ebc39">1.4. 外部资源</a></li>
 </ul>
 </li>
 </ul>
@@ -257,12 +257,12 @@ for the JavaScript code in this tag.
 
 
 
-<div id="outline-container-orgd296ae8" class="outline-2">
-<h2 id="orgd296ae8"><span class="section-number-2">1</span> A Parser based on Regular Expression</h2>
+<div id="outline-container-org76e55b3" class="outline-2">
+<h2 id="org76e55b3"><span class="section-number-2">1</span> A Parser based on Regular Expression</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf7dd2fd" class="outline-3">
-<h3 id="orgf7dd2fd"><span class="section-number-3">1.1</span> 基本原理</h3>
+<div id="outline-container-org70c7c54" class="outline-3">
+<h3 id="org70c7c54"><span class="section-number-3">1.1</span> 基本原理</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
    Lex 是一个产生词法分析器的程序．怎么来产生呢？基本原理是根据输入的不同正则表达式作为规则，
@@ -271,12 +271,12 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-org8bd9ee1" class="outline-3">
-<h3 id="org8bd9ee1"><span class="section-number-3">1.2</span> Lex 程序的基本书写</h3>
+<div id="outline-container-org5733c80" class="outline-3">
+<h3 id="org5733c80"><span class="section-number-3">1.2</span> Lex 程序的基本书写</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org7575ba8" class="outline-4">
-<h4 id="org7575ba8"><span class="section-number-4">1.2.1</span> 三个组成部分</h4>
+<div id="outline-container-orgd04a597" class="outline-4">
+<h4 id="orgd04a597"><span class="section-number-4">1.2.1</span> 三个组成部分</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 书写分为三个部分,语法定义部分，语法部分，用户的其他动作．
@@ -337,8 +337,8 @@ int main(void)
 </div>
 </div>
 
-<div id="outline-container-org16ac233" class="outline-4">
-<h4 id="org16ac233"><span class="section-number-4">1.2.2</span> Notice</h4>
+<div id="outline-container-org330b7ea" class="outline-4">
+<h4 id="org330b7ea"><span class="section-number-4">1.2.2</span> Notice</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 注意编译过程是这样的:
@@ -351,8 +351,8 @@ int main(void)
 </div>
 </div>
 
-<div id="outline-container-orgf3df97b" class="outline-3">
-<h3 id="orgf3df97b"><span class="section-number-3">1.3</span> lex的正则表达式</h3>
+<div id="outline-container-org5f9a06a" class="outline-3">
+<h3 id="org5f9a06a"><span class="section-number-3">1.3</span> lex的正则表达式</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 和一般的正则规定,比如grep的差不多,图如下:
@@ -361,8 +361,8 @@ int main(void)
 </div>
 </div>
 
-<div id="outline-container-org7ea9bf4" class="outline-3">
-<h3 id="org7ea9bf4"><span class="section-number-3">1.4</span> 外部资源</h3>
+<div id="outline-container-org39ebc39" class="outline-3">
+<h3 id="org39ebc39"><span class="section-number-3">1.4</span> 外部资源</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 <a href="http://dinosaur.compilertools.net/lex/">Lex - A Lexical Analyzer Generator</a>
@@ -382,7 +382,7 @@ int main(void)
 <div id="postamble" class="status">
 <p class="date">Date: 2016-10-24</p>
 <p class="author">Author: ThankFly</p>
-<p class="date">Created: 2019-02-26 Tue 23:50</p>
+<p class="date">Created: 2019-02-27 Wed 00:31</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
