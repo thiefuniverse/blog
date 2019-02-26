@@ -6,6 +6,7 @@
 #+KEYWORDS:    lex,linux,lexical
 #+TAGS:        Lex
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: a easy way for generating parser generator
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

@@ -6,6 +6,7 @@
 #+KEYWORDS:    blog,start
 #+TAGS:        FirstDo
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: Write what I want to write.
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

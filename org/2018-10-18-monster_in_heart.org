@@ -5,6 +5,7 @@
 #+URI:         monster_in_heart
 #+KEYWORDS:    self,thinking
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4 
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
 

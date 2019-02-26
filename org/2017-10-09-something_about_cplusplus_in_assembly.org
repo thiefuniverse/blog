@@ -5,6 +5,7 @@
 #+URI:         something_about_cplusplus_in_assembly
 #+KEYWORDS:    C++, Assembly
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
 

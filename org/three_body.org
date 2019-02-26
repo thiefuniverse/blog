@@ -6,6 +6,7 @@
 #+KEYWORDS:    reading,novel,world
 #+TAGS:        reading
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: Another view for this world, this universe... real or not real
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

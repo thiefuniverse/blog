@@ -6,6 +6,7 @@
 #+KEYWORDS:    mustache
 #+TAGS:        template,mustache
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
 

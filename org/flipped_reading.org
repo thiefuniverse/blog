@@ -6,6 +6,7 @@
 #+KEYWORDS:    novel,love,real,reading
 #+TAGS:        reading
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: 这是一个少男少女的青春爱情故事～啦啦啦 :)
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

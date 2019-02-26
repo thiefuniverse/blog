@@ -6,6 +6,7 @@
 #+KEYWORDS:    movie,human,computer,AI
 #+TAGS:        movie
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: a wonderful computer called HAL 9000
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

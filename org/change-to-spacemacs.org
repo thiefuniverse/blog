@@ -6,6 +6,7 @@
 #+KEYWORDS:    editor,emacs
 #+TAGS:        emacs
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: I think I'll come back to gnu emacs~
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

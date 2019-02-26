@@ -6,6 +6,7 @@
 #+KEYWORDS:    c++,abstract,interface,inherit
 #+TAGS:        C++
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: basic comprehension for C++
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

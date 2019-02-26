@@ -6,6 +6,7 @@
 #+KEYWORDS:    linux,system
 #+TAGS:        archlinux
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: change to a wonderful system
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">

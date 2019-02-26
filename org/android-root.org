@@ -6,6 +6,7 @@
 #+KEYWORDS:    root,解密
 #+TAGS:        android
 #+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
 #+OPTIONS:     toc:4
 #+DESCRIPTION: process of android root(nexus5x)
 #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../media/stylesheets/org.css">
