@@ -1,0 +1,20 @@
+#+BLOG: my-blog
+#+POSTID: 140
+#+ORG2BLOG:
+#+DATE: [2016-11-07 Nov 00:00]
+#+OPTIONS: toc:4 num:nil todo:nil pri:nil tags:nil ^:nil
+#+CATEGORY: emacs
+#+TAGS: spacemacs
+#+TITLE:       转战spacemacs
+#+AUTHOR:      ThankFly
+#+EMAIL:       thiefuniverses@gmail.com
+#+DATE:        2016-11-07
+#+URI:         change-to-spacemacs
+#+KEYWORDS:    editor,emacs
+#+TAGS:        emacs
+#+LANGUAGE:    en
+#+OPTIONS:     html-validation-link:nil
+#+DESCRIPTION: I think I'll come back to gnu emacs~
+
+* 转战spacemacs，立个flag~....
+[[http://ofi8au305.bkt.clouddn.com/spacemacs.png]]
