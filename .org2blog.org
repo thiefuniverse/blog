@@ -1,0 +1,13 @@
+* Posts
+** [[/Users/xiefei/org/post/monster_in_heart.org][在自己心里养一只小怪兽]]
+:PROPERTIES:
+:POSTID:   121
+:POST_DATE: 20181018T14:32:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/space_wondering.org][<<2001太空漫游>>观后感]]
+:PROPERTIES:
+:POSTID:   123
+:POST_DATE: 20161101T14:48:00+0000
+:PUBLISHED: Yes
+:END:
