@@ -96,3 +96,5 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 *** [[http://stackoverflow.com/questions/267862/what-makes-lisp-macros-so-special][What makes lisp macro so special?]]
 *** [[http://www.ruanyifeng.com/blog/2010/10/why_lisp_is_superior.html][Why lisp is superior]]?
 *** 黑客与画家
+
+# ../../../resource/img/lisplogo.png http://localhost:8888/wp-content/uploads/2020/02/lisplogo-1.png

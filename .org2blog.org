@@ -11,3 +11,81 @@
 :POST_DATE: 20161101T14:48:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/android_root.org][Android Root 过程记录(nexus5x版)]]
+:PROPERTIES:
+:POSTID:   132
+:POST_DATE: 20161112T15:53:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/change2spacemacs.org][转战spacemacs]]
+:PROPERTIES:
+:POSTID:   140
+:POST_DATE: 20161106T16:00:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/xfce4_tool.org][一个好用的xfce4截图小工具]]
+:PROPERTIES:
+:POSTID:   157
+:POST_DATE: 20161110T16:13:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/archliux_install.org][Arch安装注意事项]]
+:PROPERTIES:
+:POSTID:   136
+:POST_DATE: 20161015T15:56:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/cplusplus_in_assembly.org][Something about C++ in Assembly]]
+:PROPERTIES:
+:POSTID:   130
+:POST_DATE: 20171009T15:51:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/cplusplus_inherit_abstract.org][C++ abstract_class, interface, inherit]]
+:PROPERTIES:
+:POSTID:   143
+:POST_DATE: 20160928T16:02:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/fliped.org][Flipped 从开始的女主到最后的男主～]]
+:PROPERTIES:
+:POSTID:   145
+:POST_DATE: 20160919T16:04:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/learn_lua.org][lua碎片式记录]]
+:PROPERTIES:
+:POSTID:   149
+:POST_DATE: 20161026T16:07:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/lex_parser.org][Lex -- A Parser Generator]]
+:PROPERTIES:
+:POSTID:   147
+:POST_DATE: 20161023T16:05:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/linux_hacking1.org][EveryDay Linux Hacking (1)]]
+:PROPERTIES:
+:POSTID:   128
+:POST_DATE: 20170418T15:46:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/mustache_logic_less_template.org][Mustache--Logic-Less templates]]
+:PROPERTIES:
+:POSTID:   151
+:POST_DATE: 20170226T16:08:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/thieflisp0.org][ThiefLisp解释器构造-step0]]
+:PROPERTIES:
+:POSTID:   126
+:POST_DATE: 20170311T15:41:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/start_blog.org][Hello,Everyone! I'm FlyThief!!!!]]
+:PROPERTIES:
+:POSTID:   138
+:POST_DATE: 20160917T15:58:00+0000
+:PUBLISHED: Yes
+:END:
