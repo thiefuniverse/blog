@@ -1,5 +1,6 @@
 #+BLOG: my-blog
-#+POSTID: 121
+#+POSTID: 259
+#+BLOG: my-blog
 #+ORG2BLOG:
 #+DATE: [2018-10-18 Oct 22:32]
 #+OPTIONS: toc:4 num:nil todo:nil pri:nil tags:nil ^:nil

@@ -1,0 +1,30 @@
+#+POSTID: 187
+#+ORG2BLOG:
+#+DATE: [2020-02-26 Wed 21:43]
+#+OPTIONS: toc:nil num:nil todo:nil pri:nil tags:nil ^:nil
+#+CATEGORY: self
+#+TAGS: me, cv
+#+DESCRIPTION: introduce myself
+#+TITLE: About Me
+
+*** who am I ?
+****** ID: 谢非
+****** sex: 男
+****** age: 0x19
+****** one sentance to show yourself
+一个有志为人类游戏事业作出贡献、富有编程热情和hack精神的工程师. :)
+*** contact
+****** email: [[mailto:thiefuniverses@gmail.com ][thiefuniverses@gmail.com]]
+****** github:[[https://github.com/thiefuniverse][https://github.com/thiefuniverse]]
+****** wechat: thiefuniverse
+****** phone: 13051324828
+*** skill
+C++, python
+
+*** job
+***** 2018.7 -- now
+Sensetime 算法开发工程师: 从事手机人脸解锁业务层的 C++ 开发. 面向各大手机厂商客
+户.
+***** 2017.5 -- 2017.12
+Sensetime 实习生: 参与包括人脸检测、特征识别、活体检测、手势识别等功能sdk的开发
+维护.

@@ -1,37 +1,37 @@
 * Posts
 ** [[/Users/xiefei/org/post/monster_in_heart.org][在自己心里养一只小怪兽]]
 :PROPERTIES:
-:POSTID:   121
+:POSTID:   259
 :POST_DATE: 20181018T14:32:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/space_wondering.org][<<2001太空漫游>>观后感]]
 :PROPERTIES:
-:POSTID:   123
+:POSTID:   261
 :POST_DATE: 20161101T14:48:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/android_root.org][Android Root 过程记录(nexus5x版)]]
 :PROPERTIES:
-:POSTID:   132
+:POSTID:   266
 :POST_DATE: 20161112T15:53:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/change2spacemacs.org][转战spacemacs]]
 :PROPERTIES:
-:POSTID:   140
+:POSTID:   268
 :POST_DATE: 20161106T16:00:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/xfce4_tool.org][一个好用的xfce4截图小工具]]
 :PROPERTIES:
-:POSTID:   157
+:POSTID:   270
 :POST_DATE: 20161110T16:13:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/archliux_install.org][Arch安装注意事项]]
 :PROPERTIES:
-:POSTID:   136
+:POSTID:   272
 :POST_DATE: 20161015T15:56:00+0000
 :PUBLISHED: Yes
 :END:
@@ -49,13 +49,13 @@
 :END:
 ** [[/Users/xiefei/org/post/fliped.org][Flipped 从开始的女主到最后的男主～]]
 :PROPERTIES:
-:POSTID:   145
+:POSTID:   274
 :POST_DATE: 20160919T16:04:00+0000
 :PUBLISHED: Yes
 :END:
 ** [[/Users/xiefei/org/post/learn_lua.org][lua碎片式记录]]
 :PROPERTIES:
-:POSTID:   149
+:POSTID:   276
 :POST_DATE: 20161026T16:07:00+0000
 :PUBLISHED: Yes
 :END:
@@ -79,7 +79,7 @@
 :END:
 ** [[/Users/xiefei/org/post/thieflisp0.org][ThiefLisp解释器构造-step0]]
 :PROPERTIES:
-:POSTID:   126
+:POSTID:   278
 :POST_DATE: 20170311T15:41:00+0000
 :PUBLISHED: Yes
 :END:
@@ -87,5 +87,17 @@
 :PROPERTIES:
 :POSTID:   138
 :POST_DATE: 20160917T15:58:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/about.org][About Me]]
+:PROPERTIES:
+:POSTID:   187
+:POST_DATE: 20200226T13:43:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/threebody.org][三体]]
+:PROPERTIES:
+:POSTID:   286
+:POST_DATE: 20161128T16:00:00+0000
 :PUBLISHED: Yes
 :END:
