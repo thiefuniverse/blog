@@ -107,3 +107,15 @@
 :POST_DATE: 20181230T17:06:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/xian_journery_note.org][冲天香阵透长安--记4月古都一游]]
+:PROPERTIES:
+:POSTID:   338
+:POST_DATE: 20190427T05:35:00+0000
+:PUBLISHED: Yes
+:END:
+** [[/Users/xiefei/org/post/graduate.org][邮苑四载---毕业快乐～]]
+:PROPERTIES:
+:POSTID:   358
+:POST_DATE: 20180709T05:35:00+0000
+:PUBLISHED: Yes
+:END:
