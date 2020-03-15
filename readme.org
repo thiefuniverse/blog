@@ -1,0 +1,10 @@
+#+TITLE:   blog for wordpress
+#+DATE:    March 15, 2020
+#+SINCE:
+#+STARTUP: inlineimages
+
+* Table of Contents :TOC_3:noexport:
+- [[#description][Description]]
+
+* Description
+These are org files for my [[https://thiefuniverse.com][blog]] at wordpress. I write them in org mode by org2blog in emacs.
