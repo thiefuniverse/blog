@@ -26,8 +26,10 @@
 
 * 最后，来张桌面图震一震
 
-http://ofi8au305.bkt.clouddn.com/liya.png
+[[file:~/org/media/imgs/liya.png]]
 
 * update: 额...
   上传之后虽然有个链接很方便，但是放在博客里，别人翻不了墙还是看不到图片．．．尴尬了．．．
   恩，最后我上传到了imgur上，可以生成个链接，但是不知道可以保存多久，心里怪没底的～．．．
+
+# /Users/xiefei/org/media/imgs/liya.png https://thiefuniverse.com/wp-content/uploads/2020/03/liya.png

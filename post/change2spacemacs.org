@@ -18,4 +18,6 @@
 #+DESCRIPTION: I think I'll come back to gnu emacs~
 
 * 转战spacemacs，立个flag~....
-[[http://ofi8au305.bkt.clouddn.com/spacemacs.png]]
+ [[file:~/org/media/imgs/spacemacs.png]]
+
+# /Users/xiefei/org/media/imgs/spacemacs.png https://thiefuniverse.com/wp-content/uploads/2020/03/spacemacs.png

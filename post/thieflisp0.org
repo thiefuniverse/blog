@@ -26,7 +26,11 @@ Lisp语言在被发明时一度超越时代，但由于硬件（如CPU的处理�
 宏可以无限地拓展其本身的语法．如果你不想用for来表示循环了，你可以自己定义出其他的for循环格式．
 一切写法都可以由你自己重定义(当然， *Lisp is a list processor*, 它需要是list形式).
 
-[[../../../resource/img/lisplogo.png]]
+[[file:~/org/media/imgs/lisp.jpg]]
+#+BEGIN_QUOTE
+lisp monster
+#+END_QUOTE
+
 
    这是一段elisp(emacs lisp)的代码:
 
@@ -99,3 +103,5 @@ scheme还有用来写emacs的elisp,emacs下推荐elisp,敲起来很方便).
 *** 黑客与画家
 
 # ../../../resource/img/lisplogo.png http://localhost:8888/wp-content/uploads/2020/02/lisplogo-1.png
+
+# /Users/xiefei/org/media/imgs/lisp.jpg https://thiefuniverse.com/wp-content/uploads/2020/03/lisp.jpg

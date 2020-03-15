@@ -82,8 +82,7 @@
     先由lex把\*.lex 转化成lex.yy.c文件,然后用gcc 编译 cc lex.yy.c -**lfl**
 
 ** lex的正则表达式
-   和一般的正则规定,比如grep的差不多,图如下:
-http://ofi8au305.bkt.clouddn.com/lex_regular.png
+   和一般的正则规定,比如grep的差不多.
 
 ** 外部资源
    [[http://dinosaur.compilertools.net/lex/][Lex - A Lexical Analyzer Generator]]

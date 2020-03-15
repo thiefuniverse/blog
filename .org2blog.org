@@ -119,3 +119,9 @@
 :POST_DATE: 20180709T05:35:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/std_function.org][how? std::function in C++]]
+:PROPERTIES:
+:POSTID:   368
+:POST_DATE: 20200228T15:46:00+0000
+:PUBLISHED: Yes
+:END:

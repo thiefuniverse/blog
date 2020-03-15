@@ -224,6 +224,8 @@
 #+END_SRC
 
 易知继承之后的B类中虚函数表重写了m1的指针。结构示意图如下:
-https://thiefuniverse.github.io/resource/img/polymorphism.png
+[[file:~/org/media/imgs/vtable.jpeg]]
 
 欢迎评论区交流~~~   :)
+
+# /Users/xiefei/org/media/imgs/vtable.jpeg https://thiefuniverse.com/wp-content/uploads/2020/03/vtable.jpeg
