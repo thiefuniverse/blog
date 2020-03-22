@@ -125,3 +125,9 @@
 :POST_DATE: 20200228T15:46:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/anime_values.org][谈谈我的二次元世界观]]
+:PROPERTIES:
+:POSTID:   416
+:POST_DATE: 20200318T13:15:00+0000
+:PUBLISHED: Yes
+:END:
