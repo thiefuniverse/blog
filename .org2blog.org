@@ -131,3 +131,9 @@
 :POST_DATE: 20200318T13:15:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/smart_ptrs_in_cplusplus.org][智能指针那些琐事儿]]
+:PROPERTIES:
+:POSTID:   433
+:POST_DATE: 20200414T11:42:00+0000
+:PUBLISHED: Yes
+:END:
