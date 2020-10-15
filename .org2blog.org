@@ -137,3 +137,9 @@
 :POST_DATE: 20200414T11:42:00+0000
 :PUBLISHED: Yes
 :END:
+** [[/Users/xiefei/org/post/qinghaihu_journey_note.org][记青海湖之旅--追赶会跑的羊肉串们]]
+:PROPERTIES:
+:POSTID:   481
+:POST_DATE: 20201011T15:28:00+0000
+:PUBLISHED: Yes
+:END:
